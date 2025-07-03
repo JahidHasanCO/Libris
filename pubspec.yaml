@@ -1,0 +1,31 @@
+name: myapp
+description: "A new Flutter project."
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.0-278.1.beta
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  riverpod: ^2.6.1
+  flutter_riverpod: ^2.6.1
+  shared_preferences: ^2.5.3
+  sqflite: ^2.4.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+
+  fonts:
+    - family: MTLmr3m
+      fonts:
+        - asset: assets/fonts/MTLmr3m.ttf
