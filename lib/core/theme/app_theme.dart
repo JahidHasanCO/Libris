@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/core/theme/colors.dart';
+import 'package:pdf_reader/core/theme/colors.dart';
 
 class AppTheme {
   static ThemeData appThemeLight = ThemeData(
@@ -18,7 +18,7 @@ class AppTheme {
       // surfaceVariant: Colors.transparent,
       onSurface: Colors.black,
     ),
-    fontFamily: 'MTLmr3m',
+    fontFamily: 'Muli',
     textTheme: const TextTheme(
       displayLarge: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
       titleLarge: TextStyle(fontSize: 18, fontStyle: FontStyle.normal),

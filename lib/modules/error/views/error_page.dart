@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:myapp/core/theme/colors.dart';
-import 'package:myapp/router/router.dart';
+import 'package:pdf_reader/core/theme/colors.dart';
+import 'package:pdf_reader/router/router.dart';
 
 class ErrorPage extends StatelessWidget {
   const ErrorPage({super.key});

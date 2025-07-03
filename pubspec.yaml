@@ -1,4 +1,4 @@
-name: myapp
+name: pdf_reader
 description: "A new Flutter project."
 version: 1.0.0+1
 
@@ -15,6 +15,7 @@ dependencies:
   sqflite: ^2.4.2
   go_router: ^16.0.0
   navigation_history_observer: ^1.1.1
+  equatable: ^2.0.7
 
 dev_dependencies:
   flutter_test:
@@ -27,8 +28,31 @@ flutter:
 
   assets:
     - assets/
+    - assets/images/
 
   fonts:
-    - family: MTLmr3m
+    - family: Muli
       fonts:
-        - asset: assets/fonts/MTLmr3m.ttf
+        - asset: assets/fonts/Muli.ttf
+        - asset: assets/fonts/Muli-Italic.ttf
+          style: italic
+        - asset: assets/fonts/Muli-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Muli-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/Muli-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Muli-ExtraLightItalic.ttf
+          weight: 200
+          style: italic
+        - asset: assets/fonts/Muli-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Muli-Semi-BoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/Muli-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Muli-BoldItalic.ttf
+          weight: 700
+          style: italic
