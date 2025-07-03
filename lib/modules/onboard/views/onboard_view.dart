@@ -81,7 +81,7 @@ class OnboardViewState extends ConsumerState<OnboardView> {
                     decoration: BoxDecoration(
                       color: state.currentIndex == index
                           ? primaryColor
-                          : greyColor,
+                          : textGrayColor,
                       borderRadius: BorderRadius.circular(2),
                     ),
                   ),
