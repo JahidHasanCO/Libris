@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdf_reader/core/provider/provider.dart';
 import 'package:pdf_reader/core/theme/colors.dart';
+import 'package:pdf_reader/core/utils/extension/ref.dart';
 import 'package:pdf_reader/modules/onboard/onboard.dart';
 import 'package:pdf_reader/shared/widgets/widgets.dart';
 
@@ -28,7 +28,6 @@ class OnboardViewState extends ConsumerState<OnboardView> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +44,7 @@ class OnboardViewState extends ConsumerState<OnboardView> {
       children: [
         Expanded(
           child: ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: height * 0.60),
+            constraints: BoxConstraints(maxHeight: height * 0.50),
             child: ProviderSelector(
               provider: onboardProvider,
               selector: (state) => state.onboardList,
@@ -63,7 +62,7 @@ class OnboardViewState extends ConsumerState<OnboardView> {
             ),
           ),
         ),
-        const SizedBox(height: 40),
+        const SizedBox(height: 20),
         ProviderSelector(
           provider: onboardProvider,
           selector: (state) => state,
@@ -90,14 +89,63 @@ class OnboardViewState extends ConsumerState<OnboardView> {
             );
           },
         ),
-        SizedBox(height: height * 0.10),
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: RoundedButton(
-            onPressed: () {},
-            title: 'Get Started',
-            minimumSize: const Size(double.infinity, 52),
-          ),
+        const SizedBox(height: 20),
+        Consumer(
+          builder: (context, ref, child) {
+            final currentIndex = ref.select(
+              onboardProvider,
+              (s) => s.currentIndex,
+            );
+            final totalPages = ref.select(
+              onboardProvider,
+              (s) => s.onboardList.length,
+            );
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: RoundedButton(
+                      onPressed: () {
+                        if (currentIndex == 0) return;
+                        final prevPage = currentIndex - 1;
+                        pageController?.animateToPage(
+                          prevPage,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
+                        notifier.changePage(prevPage);
+                      },
+                      title: 'Back',
+                      backgroundColor: Colors.grey.shade300,
+                      foregroundColor: textColor,
+                      minimumSize: const Size(double.infinity, 52),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: RoundedButton(
+                      onPressed: () {
+                        if (currentIndex == totalPages - 1) {
+                          // Navigate to the home page or next screen
+                        } else {
+                          final nextPage = currentIndex + 1;
+                          pageController?.animateToPage(
+                            nextPage,
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeInOut,
+                          );
+                          notifier.changePage(nextPage);
+                        }
+                      },
+                      title: 'Next',
+                      minimumSize: const Size(double.infinity, 52),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
         ),
         const SizedBox(height: 20),
       ],

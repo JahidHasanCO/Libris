@@ -16,27 +16,19 @@ class OnboardCard extends StatelessWidget {
       children: [
         SizedBox(
           width: double.infinity,
-          height: 400,
+          height: 450,
           child: Stack(
             children: [
               Positioned.fill(
-                child: Image.asset(
-                  onboard.path,
-                  fit: BoxFit.cover,
+                child: ImageFiltered(
+                  imageFilter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
+                  child: Image.asset(
+                    onboard.path,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               // Blur filter
-              Positioned.fill(
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(
-                    sigmaX: 100,
-                    sigmaY: 100,
-                    tileMode: TileMode.clamp,
-                  ),
-                  child: Container(color: Colors.transparent),
-                ),
-              ),
-              // Foreground focused image
               Center(
                 child: Image.asset(
                   onboard.path,

@@ -7,12 +7,16 @@ class RoundedButton extends StatelessWidget {
     super.key,
     this.onPressed,
     this.cornerRadius = 12.0,
+    this.backgroundColor = primaryColor,
+    this.foregroundColor = Colors.white,
     this.padding,
     this.minimumSize,
     this.maximumSize,
   });
 
   final String title;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
   final Size? minimumSize;
   final Size? maximumSize;
   final void Function()? onPressed;
@@ -25,8 +29,8 @@ class RoundedButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: primaryColor,
-        foregroundColor: Colors.white,
+        backgroundColor: backgroundColor,
+        foregroundColor: foregroundColor,
         minimumSize: minimumSize,
         maximumSize: maximumSize,
         elevation: 0,
