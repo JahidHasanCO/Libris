@@ -3,9 +3,11 @@ import 'package:pdf_reader/core/provider/repo.dart';
 import 'package:pdf_reader/modules/home/providers/home_state.dart';
 import 'package:pdf_reader/shared/enums/enums.dart';
 import 'package:pdf_reader/shared/repo/pdf_repo.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeProvider extends Notifier<HomeState> {
   late PdfRepo _pdfRepo;
+  SharedPreferences? _prefs;
 
   @override
   HomeState build() {
@@ -14,6 +16,11 @@ class HomeProvider extends Notifier<HomeState> {
   }
 
   Future<void> onInit() async {
+    _prefs = await SharedPreferences.getInstance();
+    final categoryViewType = _prefs?.getInt('category_view_type') ?? 0;
+    state = state.copyWith(
+      categoryViewType: categoryViewType,
+    );
     await getCategoryPdfs();
   }
 
@@ -30,5 +37,11 @@ class HomeProvider extends Notifier<HomeState> {
         message: e.toString(),
       );
     }
+  }
+
+  Future<void> changeCategoryViewType(int viewType) async {
+    if (viewType == state.categoryViewType) return;
+    await _prefs?.setInt('category_view_type', viewType);
+    state = state.copyWith(categoryViewType: viewType);
   }
 }

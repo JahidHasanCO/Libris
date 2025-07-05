@@ -97,6 +97,8 @@ class HomeView extends ConsumerWidget {
             child: const Column(
               children: [
                 SizedBox(height: 40),
+                CategoryList(),
+                SizedBox(height: 20),
                 PdfList()
               ],
             ),
