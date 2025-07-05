@@ -50,6 +50,20 @@ class PdfRepo {
     return null;
   }
 
+  Future<PDF?> getPdfById(int id) async {
+    final database = await db.database;
+    final result = await database.query(
+      _tableName,
+      where: 'id = ?',
+      whereArgs: [id],
+      limit: 1,
+    );
+    if (result.isNotEmpty) {
+      return PDF.fromMap(result.first);
+    }
+    return null;
+  }
+
   Future<int> insert(PDF pdf) async {
     final database = await db.database;
     return database.insert(_tableName, pdf.toMap());
@@ -74,6 +88,25 @@ class PdfRepo {
     final database = await db.database;
     return database.delete(
       _tableName,
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+
+  Future<int> updateEbookRead({
+    required int id,
+    required int lastReadPage,
+    required int totalPages,
+  }) async {
+    final database = await db.database;
+    final now = DateTime.now().toIso8601String();
+    return database.update(
+      _tableName,
+      {
+        'current_page': lastReadPage,
+        'total_pages': totalPages,
+        'updated_at': now,
+      },
       where: 'id = ?',
       whereArgs: [id],
     );

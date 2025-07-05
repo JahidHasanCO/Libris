@@ -12,10 +12,10 @@ class BottomNavigationView extends ConsumerStatefulWidget {
   const BottomNavigationView({super.key});
 
   @override
-  OnboardViewState createState() => OnboardViewState();
+  BottomNavigationViewState createState() => BottomNavigationViewState();
 }
 
-class OnboardViewState extends ConsumerState<BottomNavigationView> {
+class BottomNavigationViewState extends ConsumerState<BottomNavigationView> {
   @override
   void initState() {
     super.initState();

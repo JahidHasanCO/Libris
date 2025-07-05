@@ -12,6 +12,7 @@ final class AppRouter {
           BottomNavigationPage.route,
           OnboardPage.route,
           PdfAddPage.route,
+          PdfReadPage.route,
         ],
         navigatorKey: navigatorKey,
         initialLocation: initialLocation,

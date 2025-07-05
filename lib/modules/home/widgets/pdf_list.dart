@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pdf_reader/core/provider/provider.dart';
 import 'package:pdf_reader/core/theme/colors.dart';
 import 'package:pdf_reader/core/utils/extension/ref.dart';
+import 'package:pdf_reader/router/router.dart';
 import 'package:pdf_reader/shared/widgets/pdf_list_tile.dart';
 
 class PdfList extends ConsumerWidget {
@@ -39,6 +41,12 @@ class PdfList extends ConsumerWidget {
             return PdfListTile(
               title: pdf.name ?? 'No Title',
               category: pdf.categoryName ?? 'Other',
+              onTap: () {
+                context.pushNamed(
+                  Routes.pdfRead,
+                  pathParameters: {'id': pdf.id.toString()},
+                );
+              },
             );
           },
           separatorBuilder: (context, index) => const SizedBox(height: 10),

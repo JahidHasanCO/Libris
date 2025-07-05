@@ -7,6 +7,7 @@ import 'package:pdf_reader/modules/bottom_navigation/bottom_navigation.dart' sho
 import 'package:pdf_reader/modules/error/error.dart' show ErrorPage;
 import 'package:pdf_reader/modules/onboard/onboard.dart' show OnboardPage;
 import 'package:pdf_reader/modules/pdf_add/pdf_add.dart' show PdfAddPage;
+import 'package:pdf_reader/modules/pdf_read/pdf_read.dart';
 
 part 'app_router.dart';
 part 'routes.dart';

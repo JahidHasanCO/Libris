@@ -19,6 +19,7 @@ dependencies:
   path: ^1.9.1
   path_provider: ^2.1.5
   file_picker: ^10.2.0
+  flutter_pdfview: ^1.4.1+1
 
 dev_dependencies:
   flutter_lints: ^6.0.0
