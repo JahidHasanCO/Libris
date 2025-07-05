@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:path/path.dart';
 import 'package:pdf_reader/core/services/db/database.dart';
+import 'package:pdf_reader/core/utils/extension/object.dart';
 import 'package:pdf_reader/shared/models/models.dart';
 
 class PdfRepo {
@@ -54,13 +55,18 @@ class PdfRepo {
   }
 
   Future<int> update(PDF pdf) async {
-    final database = await db.database;
-    return database.update(
-      _tableName,
-      pdf.toMap(),
-      where: 'id = ?',
-      whereArgs: [pdf.id],
-    );
+    try {
+      final database = await db.database;
+      return database.update(
+        _tableName,
+        pdf.toMap(),
+        where: 'id = ?',
+        whereArgs: [pdf.id],
+      );
+    } on Exception catch (e) {
+      e.doPrint(prefix: '[PdfRepo.update]');
+      return 0;
+    }
   }
 
   Future<int> delete(int id) async {

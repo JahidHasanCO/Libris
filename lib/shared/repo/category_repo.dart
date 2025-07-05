@@ -19,4 +19,22 @@ class CategoryRepo {
       return [];
     }
   }
+
+  Future<Category?> getCategoryById(int id) async {
+    try {
+      final db = await dbInstance.database;
+      final result = await db.query(
+        _tableName,
+        where: 'id = ?',
+        whereArgs: [id],
+      );
+      if (result.isNotEmpty) {
+        return Category.fromMap(result.first);
+      }
+      return null;
+    } on Exception catch (e) {
+      e.toString().doPrint(prefix: '[getCategoryById]');
+      return null;
+    }
+  }
 }

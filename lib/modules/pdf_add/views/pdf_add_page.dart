@@ -34,26 +34,44 @@ class PdfAddPageState extends ConsumerState<PdfAddPage> {
   }
 
   void _listen() {
-    ref.listen<PdfAddState>(pdfAddProvider, (previous, next) {
-      if (next.status.isSuccess && next.pdf != null) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          showModalBottomSheet<void>(
-            context: context,
-            isScrollControlled: true,
-            builder: (context) => const PdfAddView(),
-          ).then((value) {
-            if (ref.context.mounted && Navigator.of(ref.context).canPop()) {
-              Navigator.of(ref.context).pop();
-            }
+    ref
+      ..listen(pdfAddProvider.select((s) => s.isBottomSheetOpen), (
+        previous,
+        next,
+      ) {
+        if (previous != next && next) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            showModalBottomSheet<void>(
+              context: context,
+              isScrollControlled: true,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(12),
+                  topRight: Radius.circular(12),
+                ),
+              ),
+              builder: (context) => Padding(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom,
+                ),
+                child: const PdfAddView(),
+              ),
+            ).then((value) {
+              if (ref.context.mounted && Navigator.of(ref.context).canPop()) {
+                Navigator.of(ref.context).pop();
+              }
+            });
           });
-        });
-      } else if (next.status.isError) {
-        Navigator.pop(context);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(next.message)),
-        );
-      }
-    });
+        }
+      })
+      ..listen(pdfAddProvider, (previous, next) {
+        if (next.status.isError) {
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(next.message)),
+          );
+        }
+      });
   }
 
   @override
