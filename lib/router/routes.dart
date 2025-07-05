@@ -3,6 +3,7 @@ part of 'router.dart';
 sealed class Routes {
   static const onboard = 'onboard';
   static const bottomNavigation = 'bottom_navigation';
+  static const pdfAdd = 'pdf_add';
 }
 
 extension AsPathExt on String {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pdf_reader/core/provider/provider.dart';
 import 'package:pdf_reader/core/theme/app_theme.dart';
 import 'package:pdf_reader/router/router.dart';
 
@@ -11,6 +12,14 @@ class MyAppView extends ConsumerStatefulWidget {
 }
 
 class _MyAppState extends ConsumerState<MyAppView> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await ref.read(appProvider.notifier).onInit();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final initialLocation = Routes.onboard.asPath;

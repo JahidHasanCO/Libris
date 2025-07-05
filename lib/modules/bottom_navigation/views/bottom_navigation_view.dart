@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pdf_reader/core/provider/provider.dart';
 import 'package:pdf_reader/core/theme/colors.dart';
 import 'package:pdf_reader/modules/bottom_navigation/bottom_navigation.dart';
 import 'package:pdf_reader/modules/home/home.dart';
 import 'package:pdf_reader/modules/settings/settings.dart';
+import 'package:pdf_reader/router/router.dart';
 
 class BottomNavigationView extends ConsumerStatefulWidget {
   const BottomNavigationView({super.key});
@@ -46,8 +48,7 @@ class OnboardViewState extends ConsumerState<BottomNavigationView> {
               currentIndex: selectedIndex,
               onTap: (index) {
                 if (index == 1) {
-                  // Add button tapped – perform your action here
-                  _onAddButtonTapped(context);
+                  context.pushNamed(Routes.pdfAdd);
                 } else {
                   // Change page index for Home and Settings only
                   ref.read(bottomNavigationProvider.notifier).setIndex(index);
@@ -87,17 +88,6 @@ class OnboardViewState extends ConsumerState<BottomNavigationView> {
           ),
         ),
       ],
-    );
-  }
-
-  void _onAddButtonTapped(BuildContext context) {
-    // Example action: show bottom sheet
-    showModalBottomSheet<void>(
-      context: context,
-      builder: (_) => const SizedBox(
-        height: 200,
-        child: Center(child: Text('Add Action Here')),
-      ),
     );
   }
 }

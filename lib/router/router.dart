@@ -6,6 +6,7 @@ import 'package:pdf_reader/core/variables/global_variables.dart' show navigatorK
 import 'package:pdf_reader/modules/bottom_navigation/bottom_navigation.dart' show BottomNavigationPage;
 import 'package:pdf_reader/modules/error/error.dart' show ErrorPage;
 import 'package:pdf_reader/modules/onboard/onboard.dart' show OnboardPage;
+import 'package:pdf_reader/modules/pdf_add/pdf_add.dart' show PdfAddPage;
 
 part 'app_router.dart';
 part 'routes.dart';
