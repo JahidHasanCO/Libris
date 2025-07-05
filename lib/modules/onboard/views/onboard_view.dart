@@ -7,6 +7,7 @@ import 'package:pdf_reader/core/utils/extension/ref.dart';
 import 'package:pdf_reader/modules/onboard/onboard.dart';
 import 'package:pdf_reader/router/router.dart';
 import 'package:pdf_reader/shared/widgets/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardView extends ConsumerStatefulWidget {
   const OnboardView({super.key});
@@ -17,17 +18,28 @@ class OnboardView extends ConsumerStatefulWidget {
 
 class OnboardViewState extends ConsumerState<OnboardView> {
   late final PageController? pageController;
+  SharedPreferences? _prefs;
 
   @override
   void initState() {
     super.initState();
     pageController = PageController();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      _prefs = await SharedPreferences.getInstance();
+    });
   }
 
   @override
   void dispose() {
     pageController?.dispose();
     super.dispose();
+  }
+
+  Future<void> onNavigateToHome() async {
+    _prefs ??= await SharedPreferences.getInstance();
+    await _prefs!.setBool('onboarded', true);
+    if (!mounted) return;
+    context.go(Routes.bottomNavigation.asPath);
   }
 
   @override
@@ -129,7 +141,7 @@ class OnboardViewState extends ConsumerState<OnboardView> {
                     child: RoundedButton(
                       onPressed: () async {
                         if (currentIndex == totalPages - 1) {
-                          context.go(Routes.bottomNavigation.asPath);
+                          await onNavigateToHome();
                         } else {
                           final nextPage = currentIndex + 1;
                           await pageController?.animateToPage(

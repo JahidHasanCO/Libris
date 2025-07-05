@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pdf_reader/core/provider/provider.dart';
 import 'package:pdf_reader/core/provider/repo.dart';
 import 'package:pdf_reader/modules/pdf_add/pdf_add.dart';
 import 'package:pdf_reader/shared/enums/state.dart';
@@ -14,6 +15,7 @@ class PdfAddProvider extends AutoDisposeNotifier<PdfAddState> {
   PdfAddState build() {
     _repo = ref.read(pdfRepoProvider);
     _categoryRepo = ref.read(categoryRepoProvider);
+    ref.onDispose(_dispose);
     return const PdfAddState();
   }
 
@@ -52,5 +54,9 @@ class PdfAddProvider extends AutoDisposeNotifier<PdfAddState> {
     );
     await _repo.update(updatedPdf);
     state = state.copyWith(pdf: updatedPdf, title: title);
+  }
+
+  void _dispose(){
+    ref.read(homeProvider.notifier).onRefresh();
   }
 }
