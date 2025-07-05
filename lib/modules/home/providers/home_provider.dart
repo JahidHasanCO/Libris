@@ -18,8 +18,10 @@ class HomeProvider extends Notifier<HomeState> {
   Future<void> onInit() async {
     _prefs = await SharedPreferences.getInstance();
     final categoryViewType = _prefs?.getInt('category_view_type') ?? 0;
+    final pdfViewType = _prefs?.getInt('pdf_view_type') ?? 0;
     state = state.copyWith(
       categoryViewType: categoryViewType,
+      pdfViewType: pdfViewType,
     );
     await getCategoryPdfs();
   }
@@ -49,5 +51,11 @@ class HomeProvider extends Notifier<HomeState> {
     if (viewType == state.categoryViewType) return;
     await _prefs?.setInt('category_view_type', viewType);
     state = state.copyWith(categoryViewType: viewType);
+  }
+
+  Future<void> changePdfViewType(int viewType) async {
+    if (viewType == state.pdfViewType) return;
+    await _prefs?.setInt('pdf_view_type', viewType);
+    state = state.copyWith(pdfViewType: viewType);
   }
 }

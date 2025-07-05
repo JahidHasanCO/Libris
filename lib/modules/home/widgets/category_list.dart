@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdf_reader/core/provider/provider.dart';
 import 'package:pdf_reader/core/theme/colors.dart';
 import 'package:pdf_reader/core/utils/extension/ref.dart';
-import 'package:pdf_reader/shared/widgets/category_list_tile.dart';
 import 'package:pdf_reader/shared/widgets/widgets.dart';
 
 class CategoryList extends ConsumerWidget {
@@ -19,7 +18,7 @@ class CategoryList extends ConsumerWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Row(
             children: [
               const Expanded(

@@ -41,6 +41,7 @@ class PdfReadProvider extends AutoDisposeNotifier<PdfReadState> {
       autoScrollSpeed: speed,
       status: State.success,
       pdf: pdf,
+      currentPage: pdf?.currentPage,
     );
   }
 
