@@ -24,6 +24,12 @@ class HomeProvider extends Notifier<HomeState> {
     await getCategoryPdfs();
   }
 
+  Future<void> onRefresh() async {
+    state = state.copyWith(status: State.loading);
+    await getCategoryPdfs();
+    state = state.copyWith(status: State.success);
+  }
+
   Future<void> getCategoryPdfs() async {
     try {
       final categoryPdfs = await _pdfRepo.getAllPdfsWithCategory();

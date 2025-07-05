@@ -14,35 +14,39 @@ class PdfListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: primaryColor.withAlpha(20),
-          borderRadius: BorderRadius.circular(8),
+    return Material(
+      color: Colors.transparent,
+      child: ListTile(
+        leading: Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: primaryColor.withAlpha(20),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: const Icon(
+            Icons.picture_as_pdf,
+            color: greyColor,
+          ),
         ),
-        child: const Icon(
-          Icons.picture_as_pdf,
-          color: greyColor,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        tileColor: greyLightColor.withValues(alpha: 0.3),
+        title: Text(title),
+        subtitle: Text(category),
+        titleTextStyle: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+          color: textColor,
+        ),
+        subtitleTextStyle: const TextStyle(
+          fontSize: 14,
+          color: textColorLight,
+        ),
+        onTap: onTap,
+        trailing: Icon(
+          Icons.chevron_right,
+          color: textColorLight.withValues(alpha: 0.5),
         ),
       ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-        side: const BorderSide(color: greyColor),
-      ),
-      tileColor: primaryColor.withAlpha(50),
-      title: Text(title),
-      subtitle: Text(category),
-      titleTextStyle: const TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.w500,
-        color: textColor,
-      ),
-      subtitleTextStyle: const TextStyle(
-        fontSize: 14,
-        color: greyLightColor,
-      ),
-      onTap: onTap,
     );
   }
 }
