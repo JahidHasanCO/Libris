@@ -1,7 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart' show CustomTransitionPage, GoRoute;
 import 'package:pdf_reader/core/provider/provider.dart';
+import 'package:pdf_reader/core/theme/colors.dart';
 import 'package:pdf_reader/modules/pdf_add/pdf_add.dart';
 import 'package:pdf_reader/router/router.dart' show AsPathExt, Routes;
 
@@ -32,6 +35,7 @@ class PdfAddPageState extends ConsumerState<PdfAddPage> {
       await ref.read(pdfAddProvider.notifier).import();
     });
   }
+
 
   void _listen() {
     ref
@@ -77,10 +81,56 @@ class PdfAddPageState extends ConsumerState<PdfAddPage> {
   @override
   Widget build(BuildContext context) {
     _listen();
-    return const Scaffold(
-      body: Center(
-        child: Text('Importing PDF files...'),
-      ),
+    return Scaffold(
+      body: _body(),
+    );
+  }
+
+  Widget _body() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          width: double.infinity,
+          height: 250,
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: ImageFiltered(
+                  imageFilter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
+                  child: Image.asset(
+                    'assets/images/import.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              // Blur filter
+              Center(
+                child: Image.asset(
+                  'assets/images/import.png',
+                  fit: BoxFit.contain,
+                  width: double.infinity,
+                  height: 200,
+                  errorBuilder: (context, url, error) =>
+                      const Icon(Icons.error),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: Text(
+            'Add PDF',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.normal,
+              color: textColor,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

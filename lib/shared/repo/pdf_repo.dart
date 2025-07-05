@@ -4,6 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:path/path.dart';
 import 'package:pdf_reader/core/services/db/database.dart';
 import 'package:pdf_reader/core/utils/extension/object.dart';
+import 'package:pdf_reader/shared/models/category_pdf.dart';
 import 'package:pdf_reader/shared/models/models.dart';
 
 class PdfRepo {
@@ -76,5 +77,18 @@ class PdfRepo {
       where: 'id = ?',
       whereArgs: [id],
     );
+  }
+
+  Future<List<CategoryPDF>> getAllPdfsWithCategory() async {
+    final database = await db.database;
+    final result = await database.rawQuery('''
+    SELECT pdfs.*, categories.name AS category_name
+    FROM pdfs
+    LEFT JOIN categories ON pdfs.category_id = categories.id
+    ORDER BY pdfs.updated_at DESC
+  ''');
+    return result
+        .map((json) => CategoryPDF.fromMap(json as Map<String, dynamic>))
+        .toList();
   }
 }

@@ -17,6 +17,14 @@ class BottomNavigationView extends ConsumerStatefulWidget {
 
 class OnboardViewState extends ConsumerState<BottomNavigationView> {
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await ref.read(homeProvider.notifier).onInit();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
