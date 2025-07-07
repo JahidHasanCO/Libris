@@ -19,7 +19,7 @@ class PdfList extends ConsumerWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Row(
             children: [
               const Expanded(
@@ -89,7 +89,7 @@ class PdfList extends ConsumerWidget {
           ListView.separated(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             itemCount: pdfLists.length,
             itemBuilder: (context, index) {
               final pdf = pdfLists[index];

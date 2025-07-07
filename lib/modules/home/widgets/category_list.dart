@@ -21,7 +21,7 @@ class CategoryList extends ConsumerWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Row(
             children: [
               const Expanded(
@@ -64,7 +64,7 @@ class CategoryList extends ConsumerWidget {
           child: ListView.separated(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             itemCount: categories.length > maxItem
                 ? maxItem
                 : categories.length,

@@ -71,7 +71,7 @@ class HomeView extends ConsumerWidget {
         elevation: 0,
         actions: [
           IconButton(
-            icon: const Icon(Symbols.settings),
+            icon: const Icon(Symbols.folder_managed),
             color: Colors.white,
             onPressed: () {},
           ),
@@ -96,7 +96,7 @@ class HomeView extends ConsumerWidget {
         elevation: 0,
         backgroundColor: primaryColor,
         child: const Icon(
-          Icons.add,
+          Symbols.add,
           color: Colors.white,
           size: 30,
         ),
