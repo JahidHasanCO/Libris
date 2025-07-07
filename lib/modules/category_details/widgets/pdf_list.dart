@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:pdf_reader/core/provider/provider.dart';
 import 'package:pdf_reader/core/theme/colors.dart';
 import 'package:pdf_reader/core/utils/extension/ref.dart';
+import 'package:pdf_reader/core/utils/extension/string.dart';
 import 'package:pdf_reader/router/router.dart';
 import 'package:pdf_reader/shared/widgets/pdf_list_tile.dart';
 import 'package:pdf_reader/shared/widgets/widgets.dart';
@@ -75,7 +76,7 @@ class PdfList extends ConsumerWidget {
               final pdf = pdfLists[index];
               return PdfGridTile(
                 title: pdf.name ?? '',
-                category: pdf.createdAt ?? 'Other',
+                category: pdf.createdAt?.toDdMmYy() ?? 'Other',
                 totalPages: pdf.totalPages ?? 0,
                 currentPage: pdf.currentPage,
                 onTap: () {
@@ -98,7 +99,7 @@ class PdfList extends ConsumerWidget {
               final pdf = pdfLists[index];
               return PdfListTile(
                 title: pdf.name ?? 'No Title',
-                subtitle: pdf.createdAt ?? 'Other',
+                subtitle: pdf.createdAt?.toDdMmYy() ?? 'Other',
                 totalPages: pdf.totalPages ?? 0,
                 currentPage: pdf.currentPage,
                 onTap: () {

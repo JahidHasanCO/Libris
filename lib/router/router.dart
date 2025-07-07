@@ -5,6 +5,7 @@ import 'package:navigation_history_observer/navigation_history_observer.dart'
 import 'package:pdf_reader/core/variables/global_variables.dart' show navigatorKey;
 import 'package:pdf_reader/modules/bottom_navigation/bottom_navigation.dart' show BottomNavigationPage;
 import 'package:pdf_reader/modules/category_details/category_details.dart';
+import 'package:pdf_reader/modules/category_list/category_list.dart';
 import 'package:pdf_reader/modules/error/error.dart' show ErrorPage;
 import 'package:pdf_reader/modules/onboard/onboard.dart' show OnboardPage;
 import 'package:pdf_reader/modules/pdf_add/pdf_add.dart' show PdfAddPage;

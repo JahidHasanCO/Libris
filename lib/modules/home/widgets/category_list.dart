@@ -72,7 +72,7 @@ class CategoryList extends ConsumerWidget {
               // add see all button if last item
               if (index == maxItem - 1) {
                 return GestureDetector(
-                  onTap: () {},
+                  onTap: () => context.pushNamed(Routes.categoryList),
                   child: const Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 16,
@@ -116,7 +116,7 @@ class CategoryList extends ConsumerWidget {
                     );
             },
             separatorBuilder: (context, index) {
-              return const SizedBox(width: 2);
+              return const SizedBox(width: 8);
             },
           ),
         ),
