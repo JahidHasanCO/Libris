@@ -13,8 +13,8 @@ class PdfList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final pdfLists = ref.select(homeProvider, (s) => s.categoryPdfs);
-    final viewType = ref.select(homeProvider, (s) => s.pdfViewType);
+    final pdfLists = ref.select(categoryDetailsProvider, (s) => s.categoryPdfs);
+    final viewType = ref.select(categoryDetailsProvider, (s) => s.pdfViewType);
     return Column(
       children: [
         Padding(
@@ -33,7 +33,9 @@ class PdfList extends ConsumerWidget {
               ),
               InkWell(
                 onTap: () {
-                  ref.read(homeProvider.notifier).changePdfViewType(0);
+                  ref
+                      .read(categoryDetailsProvider.notifier)
+                      .changePdfViewType(0);
                 },
                 child: Icon(
                   Icons.list,
@@ -44,7 +46,9 @@ class PdfList extends ConsumerWidget {
               const SizedBox(width: 4),
               InkWell(
                 onTap: () {
-                  ref.read(homeProvider.notifier).changePdfViewType(1);
+                  ref
+                      .read(categoryDetailsProvider.notifier)
+                      .changePdfViewType(1);
                 },
                 child: Icon(
                   Icons.grid_view,
@@ -71,7 +75,7 @@ class PdfList extends ConsumerWidget {
               final pdf = pdfLists[index];
               return PdfGridTile(
                 title: pdf.name ?? '',
-                category: pdf.categoryName ?? 'Other',
+                category: pdf.createdAt ?? 'Other',
                 totalPages: pdf.totalPages ?? 0,
                 currentPage: pdf.currentPage,
                 onTap: () {
@@ -94,7 +98,7 @@ class PdfList extends ConsumerWidget {
               final pdf = pdfLists[index];
               return PdfListTile(
                 title: pdf.name ?? 'No Title',
-                subtitle: pdf.categoryName ?? 'Other',
+                subtitle: pdf.createdAt ?? 'Other',
                 totalPages: pdf.totalPages ?? 0,
                 currentPage: pdf.currentPage,
                 onTap: () {

@@ -9,7 +9,7 @@ class PdfReadPage extends StatelessWidget {
   final int pdfId;
 
   static final route = GoRoute(
-    path: '${Routes.pdfRead.asPath}:id',
+    path: '${Routes.pdfRead.asPath}/:id',
     name: Routes.pdfRead,
     builder: (context, state) {
       final pdfId = int.tryParse(state.pathParameters['id'] ?? '0') ?? 0;

@@ -10,6 +10,7 @@ final class AppRouter {
     : config = GoRouter(
         routes: _routes ??= <RouteBase>[
           BottomNavigationPage.route,
+          CategoryDetailsPage.route,
           OnboardPage.route,
           PdfAddPage.route,
           PdfReadPage.route,

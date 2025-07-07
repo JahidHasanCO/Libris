@@ -5,20 +5,54 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdf_reader/core/provider/provider.dart';
 import 'package:pdf_reader/core/theme/colors.dart';
 import 'package:pdf_reader/core/utils/extension/ref.dart';
-import 'package:pdf_reader/modules/home/home.dart';
-import 'package:pdf_reader/shared/widgets/provider_selector.dart';
+import 'package:pdf_reader/modules/category_details/category_details.dart';
+import 'package:pdf_reader/shared/models/models.dart';
+import 'package:pdf_reader/shared/widgets/widgets.dart';
 
-class HomeView extends ConsumerWidget {
-  const HomeView({super.key});
+class CategoryDetailsView extends ConsumerStatefulWidget {
+  const CategoryDetailsView({required this.id, super.key});
+
+  final int id;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final isLoading = ref.select(homeProvider, (s) => s.status.isLoading);
+  PdfReadViewState createState() => PdfReadViewState();
+}
+
+class PdfReadViewState extends ConsumerState<CategoryDetailsView> {
+  Category? category;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final categories = ref.read(appProvider).categories;
+      category = categories.firstWhere(
+        (cat) => cat.id == widget.id,
+        orElse: () => Category(id: widget.id, name: 'Other'),
+      );
+      await ref.read(categoryDetailsProvider.notifier).onInit(widget.id);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isLoading = ref.select(
+      categoryDetailsProvider,
+      (s) => s.status.isLoading,
+    );
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
-        title: const Text('PDF Reader'),
-        backgroundColor:  primaryColor,
+        backgroundColor: primaryColor,
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: Text(
+          category?.name ?? 'Category Details',
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
         titleTextStyle: const TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.bold,
@@ -26,18 +60,11 @@ class HomeView extends ConsumerWidget {
         ),
         centerTitle: false,
         elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            color: Colors.white,
-            onPressed: () {},
-          ),
-        ],
       ),
       body: isLoading
           ? _emptyOrLoadingBody(ref, isLoading: true)
           : ProviderSelector(
-              provider: homeProvider,
+              provider: categoryDetailsProvider,
               selector: (s) => s.categoryPdfs,
               builder: (context, categoryPdfs) {
                 if (categoryPdfs.isEmpty) return _emptyOrLoadingBody(ref);
@@ -84,7 +111,7 @@ class HomeView extends ConsumerWidget {
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Text(
-            'No PDF files found',
+            'No PDFs found in this category',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 24,
@@ -118,7 +145,7 @@ class HomeView extends ConsumerWidget {
               child: const SingleChildScrollView(
                 physics: AlwaysScrollableScrollPhysics(),
                 child: Column(
-                  children: [CategoryList(), PdfList()],
+                  children: [PdfList()],
                 ),
               ),
             ),

@@ -64,6 +64,20 @@ class PdfRepo {
     return null;
   }
 
+  Future<List<PDF>> getAllPdfs({int? categoryId}) async {
+    final database = await db.database;
+
+    final result = await database.query(
+      'pdfs',
+      where: categoryId != null ? 'category_id = ?' : null,
+      whereArgs: categoryId != null ? [categoryId] : null,
+      orderBy: 'created_at DESC',
+    );
+
+    return result.map(PDF.fromMap).toList();
+  }
+
+
   Future<int> insert(PDF pdf) async {
     final database = await db.database;
     return database.insert(_tableName, pdf.toMap());

@@ -22,12 +22,14 @@ class CategoryListTile extends StatelessWidget {
           color: greyLightColor.withValues(alpha: 0.3),
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Text(
-          title,
-          style: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-            color: textColor,
+        child: Center(
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              color: textColor,
+            ),
           ),
         ),
       ),

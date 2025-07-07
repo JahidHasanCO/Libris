@@ -4,14 +4,14 @@ import 'package:pdf_reader/core/theme/colors.dart';
 class PdfListTile extends StatelessWidget {
   const PdfListTile({
     required this.title,
-    required this.category,
+    required this.subtitle,
     this.totalPages = 0,
     this.currentPage = 0,
     super.key,
     this.onTap,
   });
   final String title;
-  final String category;
+  final String subtitle;
   final VoidCallback? onTap;
   final int totalPages;
   final int currentPage;
@@ -49,7 +49,7 @@ class PdfListTile extends StatelessWidget {
               ),
               tileColor: greyLightColor.withValues(alpha: 0.3),
               title: Text(title, maxLines: 2, overflow: TextOverflow.ellipsis),
-              subtitle: Text(category),
+              subtitle: Text(subtitle),
               titleTextStyle: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,

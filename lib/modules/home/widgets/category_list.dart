@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pdf_reader/core/provider/provider.dart';
 import 'package:pdf_reader/core/theme/colors.dart';
 import 'package:pdf_reader/core/utils/extension/ref.dart';
+import 'package:pdf_reader/router/router.dart';
 import 'package:pdf_reader/shared/widgets/widgets.dart';
 
 class CategoryList extends ConsumerWidget {
@@ -90,8 +92,28 @@ class CategoryList extends ConsumerWidget {
                 );
               }
               return viewType == 0
-                  ? CategoryListTile(title: category.name)
-                  : CategoryCard(title: category.name);
+                  ? CategoryListTile(
+                      title: category.name,
+                      onTap: () {
+                        context.pushNamed(
+                          Routes.categoryDetails,
+                          pathParameters: {
+                            'id': category.id.toString(),
+                          },
+                        );
+                      },
+                    )
+                  : CategoryCard(
+                      title: category.name,
+                      onTap: () {
+                        context.pushNamed(
+                          Routes.categoryDetails,
+                          pathParameters: {
+                            'id': category.id.toString(),
+                          },
+                        );
+                      },
+                    );
             },
             separatorBuilder: (context, index) {
               return const SizedBox(width: 2);
