@@ -47,6 +47,7 @@ class AppDatabase {
       category_id INTEGER,
       created_at TEXT,
       updated_at TEXT,
+      is_protected INTEGER DEFAULT 0,
       FOREIGN KEY(category_id) REFERENCES categories(id) ON DELETE SET NULL
     )
   ''');

@@ -64,19 +64,33 @@ class PdfRepo {
     return null;
   }
 
-  Future<List<PDF>> getAllPdfs({int? categoryId}) async {
+  Future<List<PDF>> getAllPdfs({
+    int? categoryId,
+    bool isProtected = false,
+  }) async {
     final database = await db.database;
+
+    var whereClause = '';
+    final whereArgs = <Object?>[];
+
+    whereClause += 'is_protected = ?';
+    whereArgs.add(isProtected ? 1 : 0);
+
+    if (categoryId != null) {
+      if (whereClause.isNotEmpty) whereClause += ' AND ';
+      whereClause += 'category_id = ?';
+      whereArgs.add(categoryId);
+    }
 
     final result = await database.query(
       'pdfs',
-      where: categoryId != null ? 'category_id = ?' : null,
-      whereArgs: categoryId != null ? [categoryId] : null,
+      where: whereClause.isNotEmpty ? whereClause : null,
+      whereArgs: whereArgs.isNotEmpty ? whereArgs : null,
       orderBy: 'created_at DESC',
     );
 
     return result.map(PDF.fromMap).toList();
   }
-
 
   Future<int> insert(PDF pdf) async {
     final database = await db.database;
@@ -132,6 +146,7 @@ class PdfRepo {
     SELECT pdfs.*, categories.name AS category_name
     FROM pdfs
     LEFT JOIN categories ON pdfs.category_id = categories.id
+    WHERE pdfs.is_protected = 0
     ORDER BY pdfs.updated_at DESC
   ''');
     return result
