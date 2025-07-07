@@ -28,7 +28,6 @@ class PrivateFolderPinProvider
       isPinSet: true,
       isVerified: false,
       status: State.success,
-      message: 'Pin set successfully',
     );
   }
 
@@ -42,7 +41,6 @@ class PrivateFolderPinProvider
       state = state.copyWith(
         isVerified: true,
         status: State.success,
-        message: 'Pin verified successfully',
       );
     } else {
       state = state.copyWith(

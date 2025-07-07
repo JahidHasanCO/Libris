@@ -28,7 +28,7 @@ class _MyAppState extends ConsumerState<MyAppView> {
     final router = AppRouter(initialLocation: widget.initialLocation);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'SoftMax',
+      title: 'Libris',
       routerConfig: router.config,
       theme: AppTheme.appThemeLight,
     );
