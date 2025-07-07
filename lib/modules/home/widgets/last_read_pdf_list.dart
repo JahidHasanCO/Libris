@@ -16,6 +16,7 @@ class LastReadPdfList extends ConsumerWidget {
     if (pdfLists.isEmpty) return const SizedBox();
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -38,6 +39,7 @@ class LastReadPdfList extends ConsumerWidget {
           child: ListView.separated(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
+
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             itemCount: pdfLists.length,
             itemBuilder: (context, index) {
