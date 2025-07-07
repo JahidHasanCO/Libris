@@ -33,11 +33,11 @@ class PdfReadProvider extends AutoDisposeNotifier<PdfReadState> {
 
   Future<void> onInit(int id) async {
     prefs = await SharedPreferences.getInstance();
-    final ebookTheme = prefs?.getInt('ebook_theme') ?? 0;
+    final isDarkMode = prefs?.getBool('pdf_theme') ?? false;
     final speed = prefs?.getInt('auto_read_speed') ?? 60;
     final pdf = await _getPdf(id);
     state = state.copyWith(
-      ebookTheme: ebookTheme,
+      isDarkMode: isDarkMode,
       autoScrollSpeed: speed,
       status: State.success,
       pdf: pdf,

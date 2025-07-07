@@ -40,10 +40,10 @@ class MenuView extends StatelessWidget {
         const SizedBox(height: 10),
         MenuCard(
           icon: Symbols.sunny,
-          title: 'Ebook Theme',
-          description: 'Change the ebook reader theme (light/dark)',
+          title: 'PDF Theme',
+          description: 'Change the pdf reader theme (light/dark)',
           trailing: const Icon(Symbols.arrow_forward_ios, size: 16),
-          onTap: () {},
+          onTap: () => context.pushNamed(Routes.pdfTheme),
         ),
         const SizedBox(height: 10),
         MenuCard(

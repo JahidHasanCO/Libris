@@ -13,7 +13,7 @@ class PdfReadState extends Equatable {
     this.totalPages = 0,
     this.isPdfReady = false,
     this.isShowSlider = false,
-    this.ebookTheme = 0,
+    this.isDarkMode = false,
     this.isAutoScrolling = false,
     this.autoScrollSpeed = 60,
     this.autoScrollStartTime,
@@ -26,13 +26,12 @@ class PdfReadState extends Equatable {
   final int totalPages;
   final bool isPdfReady;
   final bool isShowSlider;
-  final int ebookTheme;
+  final bool isDarkMode;
   final PDF pdf;
   final bool isAutoScrolling;
   final int autoScrollSpeed;
   final DateTime? autoScrollStartTime;
 
-  bool get isDarkMode => ebookTheme == 1;
 
   @override
   List<Object?> get props => [
@@ -44,7 +43,7 @@ class PdfReadState extends Equatable {
     totalPages,
     isPdfReady,
     isShowSlider,
-    ebookTheme,
+    isDarkMode,
     pdf,
     isAutoScrolling,
     autoScrollSpeed,
@@ -61,7 +60,7 @@ class PdfReadState extends Equatable {
     int? totalPages,
     bool? isPdfReady,
     bool? isShowSlider,
-    int? ebookTheme,
+    bool? isDarkMode,
     PDF? pdf,
     bool? isAutoScrolling,
     int? autoScrollSpeed,
@@ -76,7 +75,7 @@ class PdfReadState extends Equatable {
       totalPages: totalPages ?? this.totalPages,
       isPdfReady: isPdfReady ?? this.isPdfReady,
       isShowSlider: isShowSlider ?? this.isShowSlider,
-      ebookTheme: ebookTheme ?? this.ebookTheme,
+      isDarkMode: isDarkMode ?? this.isDarkMode,
       pdf: pdf ?? this.pdf,
       isAutoScrolling: isAutoScrolling ?? this.isAutoScrolling,
       autoScrollSpeed: autoScrollSpeed ?? this.autoScrollSpeed,

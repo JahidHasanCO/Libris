@@ -7,6 +7,7 @@ import 'package:pdf_reader/modules/home/home.dart';
 import 'package:pdf_reader/modules/onboard/onboard.dart';
 import 'package:pdf_reader/modules/pdf_add/pdf_add.dart';
 import 'package:pdf_reader/modules/pdf_read/pdf_read.dart';
+import 'package:pdf_reader/modules/pdf_theme/pdf_theme.dart';
 import 'package:pdf_reader/modules/private_folder/private_folder.dart';
 import 'package:pdf_reader/modules/private_folder_pin/private_folder_pin.dart';
 
@@ -41,6 +42,11 @@ final pdfReadProvider =
 final privateFolderProvider =
     AutoDisposeNotifierProvider<PrivateFolderProvider, PrivateFolderState>(
       PrivateFolderProvider.new,
+    );
+
+final pdfThemeProvider =
+    AutoDisposeAsyncNotifierProvider<PdfThemeProvider, bool>(
+      PdfThemeProvider.new,
     );
 
 final privateFolderPinProvider =

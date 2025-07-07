@@ -9,6 +9,7 @@ sealed class Routes {
   static const pdfRead = 'pdf_read';
   static const privateFolderPin = 'private_folder_pin';
   static const privateFolder = 'private_folder';
+  static const pdfTheme = 'pdf_theme';
 }
 
 extension AsPathExt on String {
