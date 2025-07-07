@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pdf_reader/core/provider/repo.dart';
+import 'package:pdf_reader/core/utils/extension/object.dart';
 import 'package:pdf_reader/modules/home/providers/home_state.dart';
 import 'package:pdf_reader/shared/enums/enums.dart';
 import 'package:pdf_reader/shared/repo/pdf_repo.dart';
@@ -24,12 +25,23 @@ class HomeProvider extends Notifier<HomeState> {
       pdfViewType: pdfViewType,
     );
     await getCategoryPdfs();
+    await getLastReadCategoryPdfs();
   }
 
   Future<void> onRefresh() async {
     state = state.copyWith(status: State.loading);
     await getCategoryPdfs();
+    await getLastReadCategoryPdfs();
     state = state.copyWith(status: State.success);
+  }
+
+  Future<void> getLastReadCategoryPdfs() async {
+    try {
+      final lastPdfs = await _pdfRepo.getLastReadCategoryPdfs();
+      state = state.copyWith(lastReadPdfs: lastPdfs);
+    } on Exception catch (e) {
+      e.toString().doPrint();
+    }
   }
 
   Future<void> getCategoryPdfs() async {

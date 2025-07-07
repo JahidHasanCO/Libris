@@ -181,7 +181,7 @@ class HomeView extends ConsumerWidget {
               child: const SingleChildScrollView(
                 physics: AlwaysScrollableScrollPhysics(),
                 child: Column(
-                  children: [CategoryList(), PdfList()],
+                  children: [LastReadPdfList(), CategoryList(), PdfList()],
                 ),
               ),
             ),

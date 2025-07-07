@@ -7,12 +7,14 @@ class HomeState extends Equatable {
     this.status = State.initial,
     this.message = '',
     this.categoryPdfs = const [],
+    this.lastReadPdfs = const [],
     this.categoryViewType = 0,
     this.pdfViewType = 0,
   });
   final State status;
   final String message;
   final List<CategoryPDF> categoryPdfs;
+  final List<CategoryPDF> lastReadPdfs;
   final int categoryViewType;
   final int pdfViewType;
 
@@ -20,6 +22,7 @@ class HomeState extends Equatable {
     State? status,
     String? message,
     List<CategoryPDF>? categoryPdfs,
+    List<CategoryPDF>? lastReadPdfs,
     int? categoryViewType,
     int? pdfViewType,
   }) {
@@ -27,6 +30,7 @@ class HomeState extends Equatable {
       status: status ?? this.status,
       message: message ?? this.message,
       categoryPdfs: categoryPdfs ?? this.categoryPdfs,
+      lastReadPdfs: lastReadPdfs ?? this.lastReadPdfs,
       categoryViewType: categoryViewType ?? this.categoryViewType,
       pdfViewType: pdfViewType ?? this.pdfViewType,
     );
@@ -37,6 +41,7 @@ class HomeState extends Equatable {
     status,
     message,
     categoryPdfs,
+    lastReadPdfs,
     categoryViewType,
     pdfViewType,
   ];

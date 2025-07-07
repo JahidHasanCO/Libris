@@ -50,6 +50,7 @@ class PinVerificationState extends ConsumerState<PinVerification> {
     listenForPinVerification(ref);
     listenForMessage(ref);
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
           width: double.infinity,

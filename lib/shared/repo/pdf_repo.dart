@@ -154,4 +154,27 @@ class PdfRepo {
         .map((json) => CategoryPDF.fromMap(json as Map<String, dynamic>))
         .toList();
   }
+
+  Future<List<CategoryPDF>> getLastReadCategoryPdfs({int limit = 5}) async {
+    final database = await db.database;
+
+    final result = await database.rawQuery(
+      '''
+    SELECT pdfs.*, categories.name AS category_name
+    FROM pdfs
+    LEFT JOIN categories ON pdfs.category_id = categories.id
+    WHERE pdfs.current_page > 0
+    AND pdfs.is_protected = 0
+    ORDER BY pdfs.updated_at DESC
+    LIMIT ?
+  ''',
+      [limit],
+    );
+
+    return result.isNotEmpty
+        ? result
+              .map((json) => CategoryPDF.fromMap(json as Map<String, dynamic>))
+              .toList()
+        : <CategoryPDF>[]; // return empty list if none found
+  }
 }
