@@ -17,8 +17,6 @@ Welcome to **Libris**, your trusted companion for reading, organizing, and manag
 
 At **Libris**, our mission is to create a seamless and powerful reading experience for students, professionals, and lifelong learners. We believe that accessing your documents should be **simple, fast, and intuitive**, empowering you to focus on what truly matters.
 
----
-
 ### 🚀 **Features**
 
 ✅ **Organize Books Efficiently**  
@@ -39,7 +37,6 @@ See how much you've read and your progress in each document at a glance.
 ✅ **Private Folder Protection**  
 Secure your confidential documents in a protected folder for privacy.
 
----
 
 ### 💡 **Our Vision**
 
@@ -47,11 +44,8 @@ We aim to build an app that not only helps you read documents but also **enhance
 
 Thank you for choosing **Libris**. We are committed to delivering the best reading experience for you.
 
----
-
 _If you have any suggestions or feedback, please reach out to us. Your input drives our continuous improvement._
 
----
 
 ''';
 
@@ -74,9 +68,42 @@ _If you have any suggestions or feedback, please reach out to us. Your input dri
   }
 
   Widget _body() {
-    return MarkdownWidget(
-      data: data,
-      padding: const EdgeInsets.all(10),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          children: [
+            const SizedBox(height: 10),
+            Container(
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                color: Colors.white, // or your desired background
+                borderRadius: BorderRadius.circular(20),
+              ),
+              clipBehavior: Clip.antiAlias,
+              child: Image.asset(
+                'assets/images/logo.png',
+                fit: BoxFit.contain,
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'Libris - v1.0.0',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: textColor,
+              ),
+            ),
+            const SizedBox(height: 10),
+            MarkdownWidget(
+              shrinkWrap: true,
+              data: data,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -66,7 +66,18 @@ class HomeView extends ConsumerWidget {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
-        title: const Text('Libris'),
+        title: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Symbols.import_contacts,
+              color: Colors.white,
+              size: 24,
+            ),
+            SizedBox(width: 8),
+            Text('Libris'),
+          ],
+        ),
         backgroundColor: primaryColor,
         titleTextStyle: const TextStyle(
           fontSize: 18,
