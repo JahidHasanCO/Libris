@@ -13,7 +13,6 @@ final class AppRouter {
           CategoryDetailsPage.route,
           CategoryListPage.route,
           OnboardPage.route,
-          PdfAddPage.route,
           PdfReadPage.route,
         ],
         navigatorKey: navigatorKey,

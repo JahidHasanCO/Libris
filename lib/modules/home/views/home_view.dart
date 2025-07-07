@@ -2,19 +2,59 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pdf_reader/core/provider/provider.dart';
 import 'package:pdf_reader/core/theme/colors.dart';
 import 'package:pdf_reader/core/utils/extension/ref.dart';
 import 'package:pdf_reader/modules/home/home.dart';
-import 'package:pdf_reader/router/router.dart';
+import 'package:pdf_reader/modules/pdf_add/pdf_add.dart';
 import 'package:pdf_reader/shared/widgets/provider_selector.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});
 
+  void _listenForAddPdf(WidgetRef ref) {
+    ref..listen(pdfAddProvider.select((s) => s.isBottomSheetOpen), (
+        previous,
+        next,
+      ) {
+        if (previous != next && next) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            showModalBottomSheet<void>(
+              context: ref.context,
+              isScrollControlled: true,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(12),
+                  topRight: Radius.circular(12),
+                ),
+              ),
+              builder: (context) => Padding(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom,
+                ),
+                child: const PdfAddView(),
+              ),
+            ).then((value) {
+              if (ref.context.mounted && Navigator.of(ref.context).canPop()) {
+                Navigator.of(ref.context).pop();
+              }
+            });
+          });
+        }
+      })
+      ..listen(pdfAddProvider, (previous, next) {
+        if (next.status.isError && ref.context.mounted) {
+          Navigator.pop(ref.context);
+          ScaffoldMessenger.of(ref.context).showSnackBar(
+            SnackBar(content: Text(next.message)),
+          );
+        }
+      });
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    _listenForAddPdf(ref);
     final isLoading = ref.select(homeProvider, (s) => s.status.isLoading);
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -48,7 +88,9 @@ class HomeView extends ConsumerWidget {
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.pushNamed(Routes.pdfAdd);
+          WidgetsBinding.instance.addPostFrameCallback((_) async {
+            await ref.read(pdfAddProvider.notifier).import();
+          });
         },
         elevation: 0,
         backgroundColor: primaryColor,

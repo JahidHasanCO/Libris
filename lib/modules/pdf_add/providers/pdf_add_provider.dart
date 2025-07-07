@@ -15,7 +15,6 @@ class PdfAddProvider extends AutoDisposeNotifier<PdfAddState> {
   PdfAddState build() {
     _repo = ref.read(pdfRepoProvider);
     _categoryRepo = ref.read(categoryRepoProvider);
-    ref.onDispose(_dispose);
     return const PdfAddState();
   }
 
@@ -53,10 +52,11 @@ class PdfAddProvider extends AutoDisposeNotifier<PdfAddState> {
       categoryId: state.selectedCategory?.id,
     );
     await _repo.update(updatedPdf);
-    state = state.copyWith(pdf: updatedPdf, title: title);
-  }
-
-  void _dispose(){
-    ref.read(homeProvider.notifier).onRefresh();
+    state = state.copyWith(
+      pdf: updatedPdf,
+      title: title,
+      isBottomSheetOpen: false,
+    );
+    await ref.read(homeProvider.notifier).onRefresh();
   }
 }
