@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:pdf_reader/core/theme/colors.dart'; // adjust if needed
 
 class CategoryCard extends StatelessWidget {
@@ -26,7 +27,7 @@ class CategoryCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Icon(
-              Icons.folder_open_outlined,
+              Symbols.folder,
               color: primaryColor,
               size: 24,
             ),

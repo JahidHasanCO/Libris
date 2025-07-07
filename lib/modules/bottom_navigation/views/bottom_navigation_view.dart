@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:pdf_reader/core/provider/provider.dart';
 import 'package:pdf_reader/core/theme/colors.dart';
 import 'package:pdf_reader/modules/bottom_navigation/bottom_navigation.dart';
 import 'package:pdf_reader/modules/home/home.dart';
-import 'package:pdf_reader/modules/settings/settings.dart';
+import 'package:pdf_reader/modules/menu/menu.dart';
 
 class BottomNavigationView extends ConsumerStatefulWidget {
   const BottomNavigationView({super.key});
@@ -41,21 +42,21 @@ class BottomNavigationViewState extends ConsumerState<BottomNavigationView> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: NavItem(
-              icon: Icons.home,
+              icon: Symbols.home,
               isSelected: selectedIndex == 0,
             ),
             label: '',
           ),
           BottomNavigationBarItem(
             icon: NavItem(
-              icon: Icons.view_list,
+              icon: Symbols.newsstand,
               isSelected: selectedIndex == 1,
             ),
             label: '',
           ),
           BottomNavigationBarItem(
             icon: NavItem(
-              icon: Icons.settings,
+              icon: Symbols.menu,
               isSelected: selectedIndex == 2,
             ),
             label: '',
@@ -70,8 +71,8 @@ class BottomNavigationViewState extends ConsumerState<BottomNavigationView> {
       index: ref.watch(bottomNavigationProvider),
       children: const [
         HomeView(),
-        SettingsView(),
-        SettingsView(),
+        MenuView(),
+        MenuView(),
       ],
     );
   }

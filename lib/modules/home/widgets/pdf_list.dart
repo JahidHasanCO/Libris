@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:pdf_reader/core/provider/provider.dart';
 import 'package:pdf_reader/core/theme/colors.dart';
 import 'package:pdf_reader/core/utils/extension/ref.dart';
@@ -36,7 +37,7 @@ class PdfList extends ConsumerWidget {
                   ref.read(homeProvider.notifier).changePdfViewType(0);
                 },
                 child: Icon(
-                  Icons.list,
+                  Symbols.list,
                   color: viewType == 0 ? primaryColor : greyLightColor,
                   size: 20,
                 ),
@@ -47,7 +48,7 @@ class PdfList extends ConsumerWidget {
                   ref.read(homeProvider.notifier).changePdfViewType(1);
                 },
                 child: Icon(
-                  Icons.grid_view,
+                  Symbols.grid_view,
                   color: viewType == 1 ? primaryColor : greyLightColor,
                   size: 20,
                 ),
