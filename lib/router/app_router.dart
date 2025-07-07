@@ -14,6 +14,7 @@ final class AppRouter {
           CategoryListPage.route,
           OnboardPage.route,
           PdfReadPage.route,
+          PrivateFolderPinPage.route,
         ],
         navigatorKey: navigatorKey,
         initialLocation: initialLocation,

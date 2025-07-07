@@ -22,6 +22,7 @@ dependencies:
   flutter_pdfview: ^1.4.1+1
   intl: ^0.20.2
   material_symbols_icons: ^4.2815.1
+  pinput: ^5.0.1
 
 dev_dependencies:
   flutter_lints: ^6.0.0

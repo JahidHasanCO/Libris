@@ -9,6 +9,7 @@ import 'package:pdf_reader/modules/category_list/category_list.dart';
 import 'package:pdf_reader/modules/error/error.dart' show ErrorPage;
 import 'package:pdf_reader/modules/onboard/onboard.dart' show OnboardPage;
 import 'package:pdf_reader/modules/pdf_read/pdf_read.dart';
+import 'package:pdf_reader/modules/private_folder_pin/private_folder_pin.dart';
 
 part 'app_router.dart';
 part 'routes.dart';

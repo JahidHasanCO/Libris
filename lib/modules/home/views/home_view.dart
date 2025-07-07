@@ -2,19 +2,22 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:pdf_reader/core/provider/provider.dart';
 import 'package:pdf_reader/core/theme/colors.dart';
 import 'package:pdf_reader/core/utils/extension/ref.dart';
 import 'package:pdf_reader/modules/home/home.dart';
 import 'package:pdf_reader/modules/pdf_add/pdf_add.dart';
+import 'package:pdf_reader/router/router.dart';
 import 'package:pdf_reader/shared/widgets/provider_selector.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});
 
   void _listenForAddPdf(WidgetRef ref) {
-    ref..listen(pdfAddProvider.select((s) => s.isBottomSheetOpen), (
+    ref
+      ..listen(pdfAddProvider.select((s) => s.isBottomSheetOpen), (
         previous,
         next,
       ) {
@@ -73,7 +76,7 @@ class HomeView extends ConsumerWidget {
           IconButton(
             icon: const Icon(Symbols.folder_managed),
             color: Colors.white,
-            onPressed: () {},
+            onPressed: () => context.pushNamed(Routes.privateFolderPin),
           ),
         ],
       ),
