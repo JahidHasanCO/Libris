@@ -18,6 +18,17 @@ class AppTheme {
       // surfaceVariant: Colors.transparent,
       onSurface: Colors.black,
     ),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: primaryColor,
+      foregroundColor: Colors.white,
+      iconTheme: IconThemeData(color: Colors.white),
+      titleTextStyle: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+      elevation: 0,
+    ),
     fontFamily: 'Muli',
     textTheme: const TextTheme(
       displayLarge: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),

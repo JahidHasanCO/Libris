@@ -23,6 +23,7 @@ dependencies:
   intl: ^0.20.2
   material_symbols_icons: ^4.2815.1
   pinput: ^5.0.1
+  markdown_widget: ^2.3.2+8
 
 dev_dependencies:
   flutter_lints: ^6.0.0

@@ -1,6 +1,7 @@
 part of 'router.dart';
 
 sealed class Routes {
+  static const aboutUs = 'about_us';
   static const categoryDetails = 'category_details';
   static const categoryList = 'category_list';
   static const onboard = 'onboard';

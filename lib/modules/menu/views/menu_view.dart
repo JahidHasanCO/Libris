@@ -51,7 +51,7 @@ class MenuView extends StatelessWidget {
           title: 'About Us',
           description: 'Learn more about the app and its features',
           trailing: const Icon(Symbols.arrow_forward_ios, size: 16),
-          onTap: () {},
+          onTap: () => context.pushNamed(Routes.aboutUs),
         ),
       ],
     );

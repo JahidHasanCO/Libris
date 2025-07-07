@@ -9,6 +9,7 @@ final class AppRouter {
   AppRouter._({this.initialLocation})
     : config = GoRouter(
         routes: _routes ??= <RouteBase>[
+          AboutUsPage.route,
           BottomNavigationPage.route,
           CategoryDetailsPage.route,
           CategoryListPage.route,
