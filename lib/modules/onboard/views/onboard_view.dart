@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pdf_reader/core/provider/provider.dart';
-import 'package:pdf_reader/core/theme/colors.dart';
-import 'package:pdf_reader/core/utils/extension/ref.dart';
-import 'package:pdf_reader/modules/onboard/onboard.dart';
-import 'package:pdf_reader/router/router.dart';
-import 'package:pdf_reader/shared/widgets/widgets.dart';
+import 'package:libris/core/provider/provider.dart';
+import 'package:libris/core/theme/colors.dart';
+import 'package:libris/core/utils/extension/ref.dart';
+import 'package:libris/modules/onboard/onboard.dart';
+import 'package:libris/router/router.dart';
+import 'package:libris/shared/widgets/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardView extends ConsumerStatefulWidget {

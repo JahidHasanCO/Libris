@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pdf_reader/core/theme/colors.dart';
-import 'package:pdf_reader/shared/enums/menu.dart';
+import 'package:libris/core/theme/colors.dart';
+import 'package:libris/shared/enums/menu.dart';
 
 class PopupAppMenuButton extends PopupMenuButton<int> {
   PopupAppMenuButton({

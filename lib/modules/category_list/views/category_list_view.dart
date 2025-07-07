@@ -1,10 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pdf_reader/core/provider/provider.dart';
-import 'package:pdf_reader/core/theme/colors.dart';
-import 'package:pdf_reader/router/router.dart';
-import 'package:pdf_reader/shared/widgets/widgets.dart';
+import 'package:libris/core/provider/provider.dart';
+import 'package:libris/core/theme/colors.dart';
+import 'package:libris/router/router.dart';
+import 'package:libris/shared/widgets/widgets.dart';
 
 class CategoryListView extends StatelessWidget {
   const CategoryListView({super.key});

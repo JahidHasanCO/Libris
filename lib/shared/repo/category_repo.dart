@@ -1,6 +1,6 @@
-import 'package:pdf_reader/core/services/db/database.dart';
-import 'package:pdf_reader/core/utils/extension/object.dart';
-import 'package:pdf_reader/shared/models/models.dart';
+import 'package:libris/core/services/db/database.dart';
+import 'package:libris/core/utils/extension/object.dart';
+import 'package:libris/shared/models/models.dart';
 
 class CategoryRepo {
   final AppDatabase dbInstance = AppDatabase.instance;

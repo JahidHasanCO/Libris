@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pdf_reader/app/app.dart';
-import 'package:pdf_reader/core/provider/repo.dart';
-import 'package:pdf_reader/shared/repo/category_repo.dart';
+import 'package:libris/app/app.dart';
+import 'package:libris/core/provider/repo.dart';
+import 'package:libris/shared/repo/category_repo.dart';
 
 class AppProvider extends Notifier<AppState>{
 

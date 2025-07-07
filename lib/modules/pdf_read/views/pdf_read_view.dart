@@ -3,11 +3,11 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pdf_reader/core/provider/provider.dart';
-import 'package:pdf_reader/core/theme/colors.dart';
-import 'package:pdf_reader/core/utils/extension/ref.dart';
-import 'package:pdf_reader/modules/pdf_read/pdf_read.dart';
-import 'package:pdf_reader/shared/widgets/provider_selector.dart';
+import 'package:libris/core/provider/provider.dart';
+import 'package:libris/core/theme/colors.dart';
+import 'package:libris/core/utils/extension/ref.dart';
+import 'package:libris/modules/pdf_read/pdf_read.dart';
+import 'package:libris/shared/widgets/provider_selector.dart';
 
 class PdfReadView extends ConsumerStatefulWidget {
   const PdfReadView({required this.pdfId, super.key});

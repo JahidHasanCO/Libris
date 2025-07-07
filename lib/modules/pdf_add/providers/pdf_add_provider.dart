@@ -1,11 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pdf_reader/core/provider/provider.dart';
-import 'package:pdf_reader/core/provider/repo.dart';
-import 'package:pdf_reader/modules/pdf_add/pdf_add.dart';
-import 'package:pdf_reader/shared/enums/state.dart';
-import 'package:pdf_reader/shared/models/category.dart';
-import 'package:pdf_reader/shared/repo/category_repo.dart';
-import 'package:pdf_reader/shared/repo/pdf_repo.dart';
+import 'package:libris/core/provider/provider.dart';
+import 'package:libris/core/provider/repo.dart';
+import 'package:libris/modules/pdf_add/pdf_add.dart';
+import 'package:libris/shared/enums/state.dart';
+import 'package:libris/shared/models/category.dart';
+import 'package:libris/shared/repo/category_repo.dart';
+import 'package:libris/shared/repo/pdf_repo.dart';
 
 class PdfAddProvider extends AutoDisposeNotifier<PdfAddState> {
   late PdfRepo _repo;

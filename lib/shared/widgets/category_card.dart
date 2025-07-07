@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:libris/core/theme/colors.dart'; // adjust if needed
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:pdf_reader/core/theme/colors.dart'; // adjust if needed
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({

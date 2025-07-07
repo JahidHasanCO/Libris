@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pdf_reader/core/provider/provider.dart';
-import 'package:pdf_reader/core/theme/colors.dart';
+import 'package:libris/core/provider/provider.dart';
+import 'package:libris/core/theme/colors.dart';
 
 class PdfThemeView extends ConsumerStatefulWidget {
   const PdfThemeView({super.key});

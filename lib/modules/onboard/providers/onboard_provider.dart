@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pdf_reader/modules/onboard/onboard.dart';
-import 'package:pdf_reader/shared/models/onboard.dart';
+import 'package:libris/modules/onboard/onboard.dart';
+import 'package:libris/shared/models/onboard.dart';
 
 class OnboardProvider extends AutoDisposeNotifier<OnboardState> {
   @override

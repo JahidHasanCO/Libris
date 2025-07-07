@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pdf_reader/core/theme/colors.dart';
+import 'package:libris/core/theme/colors.dart';
 
 class FilledOutlinedDropdownFormField<T> extends StatelessWidget {
   const FilledOutlinedDropdownFormField({

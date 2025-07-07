@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pdf_reader/core/provider/provider.dart';
-import 'package:pdf_reader/core/theme/colors.dart';
-import 'package:pdf_reader/modules/private_folder_pin/private_folder_pin.dart';
-import 'package:pdf_reader/shared/widgets/provider_selector.dart';
+import 'package:libris/core/provider/provider.dart';
+import 'package:libris/core/theme/colors.dart';
+import 'package:libris/modules/private_folder_pin/private_folder_pin.dart';
+import 'package:libris/shared/widgets/provider_selector.dart';
 
 class PrivateFolderPinView extends ConsumerStatefulWidget {
   const PrivateFolderPinView({super.key});

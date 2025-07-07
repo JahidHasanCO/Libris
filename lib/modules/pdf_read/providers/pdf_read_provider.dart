@@ -4,13 +4,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:pdf_reader/core/provider/provider.dart';
-import 'package:pdf_reader/core/provider/repo.dart';
-import 'package:pdf_reader/core/utils/extension/object.dart';
-import 'package:pdf_reader/modules/pdf_read/pdf_read.dart';
-import 'package:pdf_reader/shared/enums/state.dart';
-import 'package:pdf_reader/shared/models/pdf.dart';
-import 'package:pdf_reader/shared/repo/pdf_repo.dart';
+import 'package:libris/core/provider/provider.dart';
+import 'package:libris/core/provider/repo.dart';
+import 'package:libris/core/utils/extension/object.dart';
+import 'package:libris/modules/pdf_read/pdf_read.dart';
+import 'package:libris/shared/enums/state.dart';
+import 'package:libris/shared/models/pdf.dart';
+import 'package:libris/shared/repo/pdf_repo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PdfReadProvider extends AutoDisposeNotifier<PdfReadState> {

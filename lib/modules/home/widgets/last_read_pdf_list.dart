@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pdf_reader/core/provider/provider.dart';
-import 'package:pdf_reader/core/theme/colors.dart';
-import 'package:pdf_reader/core/utils/extension/ref.dart';
-import 'package:pdf_reader/modules/home/home.dart';
-import 'package:pdf_reader/router/router.dart';
+import 'package:libris/core/provider/provider.dart';
+import 'package:libris/core/theme/colors.dart';
+import 'package:libris/core/utils/extension/ref.dart';
+import 'package:libris/modules/home/home.dart';
+import 'package:libris/router/router.dart';
 
 class LastReadPdfList extends ConsumerWidget {
   const LastReadPdfList({super.key});

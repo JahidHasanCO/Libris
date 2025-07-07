@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart' show GoRoute;
-import 'package:pdf_reader/modules/pdf_read/pdf_read.dart';
-import 'package:pdf_reader/router/router.dart' show AsPathExt, Routes;
+import 'package:libris/modules/pdf_read/pdf_read.dart';
+import 'package:libris/router/router.dart' show AsPathExt, Routes;
 
 class PdfReadPage extends StatelessWidget {
   const PdfReadPage({required this.pdfId, super.key});

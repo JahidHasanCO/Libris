@@ -2,12 +2,12 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pdf_reader/core/provider/provider.dart';
-import 'package:pdf_reader/core/theme/colors.dart';
-import 'package:pdf_reader/core/utils/extension/ref.dart';
-import 'package:pdf_reader/modules/category_details/category_details.dart';
-import 'package:pdf_reader/shared/models/models.dart';
-import 'package:pdf_reader/shared/widgets/widgets.dart';
+import 'package:libris/core/provider/provider.dart';
+import 'package:libris/core/theme/colors.dart';
+import 'package:libris/core/utils/extension/ref.dart';
+import 'package:libris/modules/category_details/category_details.dart';
+import 'package:libris/shared/models/models.dart';
+import 'package:libris/shared/widgets/widgets.dart';
 
 class CategoryDetailsView extends ConsumerStatefulWidget {
   const CategoryDetailsView({required this.id, super.key});

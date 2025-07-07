@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pdf_reader/core/provider/repo.dart';
-import 'package:pdf_reader/modules/category_details/category_details.dart';
-import 'package:pdf_reader/shared/enums/enums.dart';
-import 'package:pdf_reader/shared/repo/pdf_repo.dart';
+import 'package:libris/core/provider/repo.dart';
+import 'package:libris/modules/category_details/category_details.dart';
+import 'package:libris/shared/enums/enums.dart';
+import 'package:libris/shared/repo/pdf_repo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CategoryDetailsProvider

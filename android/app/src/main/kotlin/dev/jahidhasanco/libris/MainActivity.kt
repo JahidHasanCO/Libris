@@ -1,4 +1,4 @@
-package dev.jahidhasanco.pdf_reader
+package dev.jahidhasanco.libris
 
 import io.flutter.embedding.android.FlutterActivity
 

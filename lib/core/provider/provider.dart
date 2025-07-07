@@ -1,15 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pdf_reader/app/app.dart';
-import 'package:pdf_reader/modules/bottom_navigation/bottom_navigation.dart'
+import 'package:libris/app/app.dart';
+import 'package:libris/modules/bottom_navigation/bottom_navigation.dart'
     show BottomNavigationProvider;
-import 'package:pdf_reader/modules/category_details/category_details.dart';
-import 'package:pdf_reader/modules/home/home.dart';
-import 'package:pdf_reader/modules/onboard/onboard.dart';
-import 'package:pdf_reader/modules/pdf_add/pdf_add.dart';
-import 'package:pdf_reader/modules/pdf_read/pdf_read.dart';
-import 'package:pdf_reader/modules/pdf_theme/pdf_theme.dart';
-import 'package:pdf_reader/modules/private_folder/private_folder.dart';
-import 'package:pdf_reader/modules/private_folder_pin/private_folder_pin.dart';
+import 'package:libris/modules/category_details/category_details.dart';
+import 'package:libris/modules/home/home.dart';
+import 'package:libris/modules/onboard/onboard.dart';
+import 'package:libris/modules/pdf_add/pdf_add.dart';
+import 'package:libris/modules/pdf_read/pdf_read.dart';
+import 'package:libris/modules/pdf_theme/pdf_theme.dart';
+import 'package:libris/modules/private_folder/private_folder.dart';
+import 'package:libris/modules/private_folder_pin/private_folder_pin.dart';
 
 final appProvider = NotifierProvider<AppProvider, AppState>(AppProvider.new);
 

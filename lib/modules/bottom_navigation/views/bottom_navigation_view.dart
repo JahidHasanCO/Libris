@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:libris/core/provider/provider.dart';
+import 'package:libris/core/theme/colors.dart';
+import 'package:libris/modules/bottom_navigation/bottom_navigation.dart';
+import 'package:libris/modules/home/home.dart';
+import 'package:libris/modules/menu/menu.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:pdf_reader/core/provider/provider.dart';
-import 'package:pdf_reader/core/theme/colors.dart';
-import 'package:pdf_reader/modules/bottom_navigation/bottom_navigation.dart';
-import 'package:pdf_reader/modules/home/home.dart';
-import 'package:pdf_reader/modules/menu/menu.dart';
 
 class BottomNavigationView extends ConsumerStatefulWidget {
   const BottomNavigationView({super.key});

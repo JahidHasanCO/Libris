@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pdf_reader/core/provider/provider.dart';
-import 'package:pdf_reader/core/theme/app_theme.dart';
-import 'package:pdf_reader/router/router.dart';
+import 'package:libris/core/provider/provider.dart';
+import 'package:libris/core/theme/app_theme.dart';
+import 'package:libris/router/router.dart';
 
 class MyAppView extends ConsumerStatefulWidget {
   const MyAppView({required this.initialLocation, super.key });

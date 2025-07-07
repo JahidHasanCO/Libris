@@ -2,11 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pdf_reader/core/provider/provider.dart';
-import 'package:pdf_reader/core/theme/colors.dart';
-import 'package:pdf_reader/core/theme/pin_theme.dart';
-import 'package:pdf_reader/shared/validators/pin_validator.dart';
-import 'package:pdf_reader/shared/widgets/rounded_button.dart';
+import 'package:libris/core/provider/provider.dart';
+import 'package:libris/core/theme/colors.dart';
+import 'package:libris/core/theme/pin_theme.dart';
+import 'package:libris/shared/validators/pin_validator.dart';
+import 'package:libris/shared/widgets/rounded_button.dart';
 import 'package:pinput/pinput.dart';
 
 class PinSet extends ConsumerStatefulWidget with PinValidator {

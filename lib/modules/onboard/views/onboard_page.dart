@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart' show GoRoute;
-import 'package:pdf_reader/modules/onboard/onboard.dart';
-import 'package:pdf_reader/router/router.dart' show AsPathExt, Routes;
+import 'package:libris/modules/onboard/onboard.dart';
+import 'package:libris/router/router.dart' show AsPathExt, Routes;
 
 class OnboardPage extends StatelessWidget {
   const OnboardPage({super.key});

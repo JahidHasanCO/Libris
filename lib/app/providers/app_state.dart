@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:pdf_reader/shared/models/category.dart';
+import 'package:libris/shared/models/category.dart';
 
 
 class AppState extends Equatable{

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:pdf_reader/shared/enums/state.dart';
-import 'package:pdf_reader/shared/models/category_pdf.dart';
+import 'package:libris/shared/enums/state.dart';
+import 'package:libris/shared/models/category_pdf.dart';
 
 class HomeState extends Equatable {
   const HomeState({

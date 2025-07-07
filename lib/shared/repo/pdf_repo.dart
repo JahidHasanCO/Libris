@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:libris/core/services/db/database.dart';
+import 'package:libris/core/utils/extension/object.dart';
+import 'package:libris/shared/models/category_pdf.dart';
+import 'package:libris/shared/models/models.dart';
 import 'package:path/path.dart';
-import 'package:pdf_reader/core/services/db/database.dart';
-import 'package:pdf_reader/core/utils/extension/object.dart';
-import 'package:pdf_reader/shared/models/category_pdf.dart';
-import 'package:pdf_reader/shared/models/models.dart';
 
 class PdfRepo {
   final AppDatabase db = AppDatabase.instance;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pdf_reader/core/theme/colors.dart'; // adjust if needed
+import 'package:libris/core/theme/colors.dart'; // adjust if needed
 
 class CategoryListTile extends StatelessWidget {
   const CategoryListTile({

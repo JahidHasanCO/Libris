@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pdf_reader/app/views/app_view.dart';
-import 'package:pdf_reader/core/services/db/database.dart';
-import 'package:pdf_reader/router/router.dart';
+import 'package:libris/app/views/app_view.dart';
+import 'package:libris/core/services/db/database.dart';
+import 'package:libris/router/router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {

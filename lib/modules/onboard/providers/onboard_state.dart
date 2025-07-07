@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:pdf_reader/shared/enums/enums.dart';
-import 'package:pdf_reader/shared/models/models.dart';
+import 'package:libris/shared/enums/enums.dart';
+import 'package:libris/shared/models/models.dart';
 
 class OnboardState extends Equatable {
   const OnboardState({

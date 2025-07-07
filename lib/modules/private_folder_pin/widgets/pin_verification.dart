@@ -3,10 +3,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pdf_reader/core/provider/provider.dart';
-import 'package:pdf_reader/core/theme/pin_theme.dart';
-import 'package:pdf_reader/router/router.dart';
-import 'package:pdf_reader/shared/validators/pin_validator.dart';
+import 'package:libris/core/provider/provider.dart';
+import 'package:libris/core/theme/pin_theme.dart';
+import 'package:libris/router/router.dart';
+import 'package:libris/shared/validators/pin_validator.dart';
 import 'package:pinput/pinput.dart';
 
 class PinVerification extends ConsumerStatefulWidget with PinValidator {

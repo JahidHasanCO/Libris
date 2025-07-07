@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pdf_reader/core/provider/repo.dart';
-import 'package:pdf_reader/core/utils/extension/object.dart';
-import 'package:pdf_reader/modules/home/providers/home_state.dart';
-import 'package:pdf_reader/shared/enums/enums.dart';
-import 'package:pdf_reader/shared/repo/pdf_repo.dart';
+import 'package:libris/core/provider/repo.dart';
+import 'package:libris/core/utils/extension/object.dart';
+import 'package:libris/modules/home/providers/home_state.dart';
+import 'package:libris/shared/enums/enums.dart';
+import 'package:libris/shared/repo/pdf_repo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeProvider extends Notifier<HomeState> {

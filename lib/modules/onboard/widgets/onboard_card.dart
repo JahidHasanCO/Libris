@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:pdf_reader/core/theme/colors.dart';
-import 'package:pdf_reader/shared/models/models.dart';
+import 'package:libris/core/theme/colors.dart';
+import 'package:libris/shared/models/models.dart';
 
 class OnboardCard extends StatelessWidget {
   const OnboardCard({required this.onboard, super.key});

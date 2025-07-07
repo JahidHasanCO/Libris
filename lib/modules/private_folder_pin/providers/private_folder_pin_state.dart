@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:pdf_reader/shared/enums/state.dart';
+import 'package:libris/shared/enums/state.dart';
 
 class PrivateFolderPinState extends Equatable {
   const PrivateFolderPinState({

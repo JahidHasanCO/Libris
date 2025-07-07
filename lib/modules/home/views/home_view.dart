@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
-import 'package:pdf_reader/core/provider/provider.dart';
-import 'package:pdf_reader/core/theme/colors.dart';
-import 'package:pdf_reader/core/utils/extension/ref.dart';
-import 'package:pdf_reader/modules/home/home.dart';
-import 'package:pdf_reader/modules/pdf_add/pdf_add.dart';
-import 'package:pdf_reader/router/router.dart';
-import 'package:pdf_reader/shared/widgets/provider_selector.dart';
+import 'package:libris/core/provider/provider.dart';
+import 'package:libris/core/theme/colors.dart';
+import 'package:libris/core/utils/extension/ref.dart';
+import 'package:libris/modules/home/home.dart';
+import 'package:libris/modules/pdf_add/pdf_add.dart';
+import 'package:libris/router/router.dart';
+import 'package:libris/shared/widgets/provider_selector.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});
@@ -66,7 +66,7 @@ class HomeView extends ConsumerWidget {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
-        title: const Text('PDF Reader'),
+        title: const Text('Libris'),
         backgroundColor: primaryColor,
         titleTextStyle: const TextStyle(
           fontSize: 18,

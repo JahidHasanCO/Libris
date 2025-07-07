@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pdf_reader/app/views/app_view.dart';
-import 'package:pdf_reader/router/router.dart';
+import 'package:libris/app/views/app_view.dart';
+import 'package:libris/router/router.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

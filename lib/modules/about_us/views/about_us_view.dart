@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:libris/core/theme/colors.dart';
 import 'package:markdown_widget/widget/markdown.dart';
-import 'package:pdf_reader/core/theme/colors.dart';
 
 class AboutUsView extends ConsumerStatefulWidget {
   const AboutUsView({super.key});
@@ -13,9 +13,9 @@ class AboutUsView extends ConsumerStatefulWidget {
 class BottomNavigationViewState extends ConsumerState<AboutUsView> {
   String data = '''
 
-Welcome to **PDF Reader**, your trusted companion for reading, organizing, and managing PDF files with ease.
+Welcome to **Libris**, your trusted companion for reading, organizing, and managing PDF files with ease.
 
-At **PDF Reader**, our mission is to create a seamless and powerful reading experience for students, professionals, and lifelong learners. We believe that accessing your documents should be **simple, fast, and intuitive**, empowering you to focus on what truly matters.
+At **Libris**, our mission is to create a seamless and powerful reading experience for students, professionals, and lifelong learners. We believe that accessing your documents should be **simple, fast, and intuitive**, empowering you to focus on what truly matters.
 
 ---
 
@@ -45,7 +45,7 @@ Secure your confidential documents in a protected folder for privacy.
 
 We aim to build an app that not only helps you read documents but also **enhances your productivity** through smart features and elegant design.
 
-Thank you for choosing **PDF Reader**. We are committed to delivering the best reading experience for you.
+Thank you for choosing **Libris**. We are committed to delivering the best reading experience for you.
 
 ---
 
