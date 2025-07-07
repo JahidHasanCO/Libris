@@ -33,7 +33,7 @@ class MenuView extends StatelessWidget {
         MenuCard(
           icon: Symbols.folder_managed,
           title: 'Private Folder',
-          description: 'Manage your private folder',
+          description: "Manage your private pdf's",
           trailing: const Icon(Symbols.arrow_forward_ios, size: 16),
           onTap: () => context.pushNamed(Routes.privateFolderPin),
         ),

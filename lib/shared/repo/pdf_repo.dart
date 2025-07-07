@@ -11,7 +11,7 @@ class PdfRepo {
   final AppDatabase db = AppDatabase.instance;
   static const _tableName = 'pdfs';
 
-  Future<PDF?> importFromFile() async {
+  Future<PDF?> importFromFile({bool isPrivate = false}) async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['pdf'],
@@ -40,6 +40,7 @@ class PdfRepo {
         filePath: filePath,
         name: name,
         size: size,
+        isProtected: isPrivate,
         createdAt: now,
         updatedAt: now,
       );

@@ -8,6 +8,7 @@ class PDF {
     this.totalPages,
     this.currentPage = 0,
     this.categoryId = 31,
+    this.isProtected = false,
     this.createdAt,
     this.updatedAt,
   });
@@ -23,11 +24,14 @@ class PDF {
     categoryId: json['category_id'] as int? ?? 31,
     createdAt: json['created_at'] as String?,
     updatedAt: json['updated_at'] as String?,
+    isProtected: json['is_protected'] == 1,
   );
+
   final int? id;
   final String filePath;
   final String? name;
   final int? size;
+  final bool? isProtected;
   final String? coverPath;
   final int? totalPages;
   final int categoryId;
@@ -44,6 +48,7 @@ class PDF {
     'total_pages': totalPages,
     'current_page': currentPage,
     'category_id': categoryId,
+    'is_protected': (isProtected ?? false) == true ? 1 : 0,
     'created_at': createdAt,
     'updated_at': updatedAt,
   };
@@ -57,6 +62,7 @@ class PDF {
     int? totalPages,
     int? currentPage,
     int? categoryId,
+    bool? isProtected,
     String? createdAt,
     String? updatedAt,
   }) {
@@ -69,6 +75,7 @@ class PDF {
       totalPages: totalPages ?? this.totalPages,
       currentPage: currentPage ?? this.currentPage,
       categoryId: categoryId ?? this.categoryId,
+      isProtected: isProtected ?? this.isProtected,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );

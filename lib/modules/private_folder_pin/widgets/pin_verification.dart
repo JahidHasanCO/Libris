@@ -2,10 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pdf_reader/core/provider/provider.dart';
 import 'package:pdf_reader/core/theme/pin_theme.dart';
+import 'package:pdf_reader/router/router.dart';
 import 'package:pdf_reader/shared/validators/pin_validator.dart';
-import 'package:pdf_reader/shared/widgets/widgets.dart';
 import 'package:pinput/pinput.dart';
 
 class PinVerification extends ConsumerStatefulWidget with PinValidator {
@@ -16,14 +17,6 @@ class PinVerification extends ConsumerStatefulWidget with PinValidator {
 }
 
 class PinVerificationState extends ConsumerState<PinVerification> {
-  TextEditingController pinController = TextEditingController();
-
-  @override
-  void dispose() {
-    pinController.dispose();
-    super.dispose();
-  }
-
   void listenForPinVerification(WidgetRef ref) {
     ref.listen(privateFolderPinProvider.select((s) => s.isVerified), (
       previous,
@@ -31,7 +24,7 @@ class PinVerificationState extends ConsumerState<PinVerification> {
     ) {
       if (previous != next && next) {
         if (ref.context.mounted) {
-          Navigator.of(ref.context).pop();
+          context.pushReplacementNamed(Routes.privateFolder);
         }
       }
     });
@@ -90,28 +83,16 @@ class PinVerificationState extends ConsumerState<PinVerification> {
           'Enter your PIN',
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 40),
         Pinput(
-          controller: pinController,
-          onCompleted: (pin) {},
+          onCompleted: (pin) {
+            ref.read(privateFolderPinProvider.notifier).verifyPin(pin);
+          },
           obscureText: true,
           validator: widget.validatePin,
           defaultPinTheme: defaultPinTheme,
           focusedPinTheme: focusedPinTheme,
           errorPinTheme: errorPinTheme,
-        ),
-        const SizedBox(height: 40),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: RoundedButton(
-            minimumSize: const Size(double.infinity, 50),
-            onPressed: () {
-              ref
-                  .read(privateFolderPinProvider.notifier)
-                  .verifyPin(pinController.text);
-            },
-            title: 'Submit',
-          ),
         ),
         const SizedBox(height: 20),
       ],

@@ -141,7 +141,7 @@ class PdfReadViewState extends ConsumerState<CategoryDetailsView> {
             color: backgroundColor.withAlpha(200),
             child: RefreshIndicator(
               onRefresh: () async =>
-                  ref.read(homeProvider.notifier).onRefresh(),
+                  ref.read(categoryDetailsProvider.notifier).onRefresh(),
               child: const SingleChildScrollView(
                 physics: AlwaysScrollableScrollPhysics(),
                 child: Column(

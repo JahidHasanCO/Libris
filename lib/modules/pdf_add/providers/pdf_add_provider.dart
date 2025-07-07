@@ -18,9 +18,9 @@ class PdfAddProvider extends AutoDisposeNotifier<PdfAddState> {
     return const PdfAddState();
   }
 
-  Future<void> import() async {
+  Future<void> import({bool isPrivate = false}) async {
     state = state.copyWith(status: State.loading, isBottomSheetOpen: false);
-    final data = await _repo.importFromFile();
+    final data = await _repo.importFromFile(isPrivate: isPrivate);
     if (data == null || data.id == null) {
       state = state.copyWith(
         status: State.error,
@@ -57,6 +57,5 @@ class PdfAddProvider extends AutoDisposeNotifier<PdfAddState> {
       title: title,
       isBottomSheetOpen: false,
     );
-    await ref.read(homeProvider.notifier).onRefresh();
   }
 }
