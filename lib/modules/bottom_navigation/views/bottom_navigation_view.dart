@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pdf_reader/core/provider/provider.dart';
 import 'package:pdf_reader/core/theme/colors.dart';
 import 'package:pdf_reader/modules/bottom_navigation/bottom_navigation.dart';
 import 'package:pdf_reader/modules/home/home.dart';
 import 'package:pdf_reader/modules/settings/settings.dart';
-import 'package:pdf_reader/router/router.dart';
 
 class BottomNavigationView extends ConsumerStatefulWidget {
   const BottomNavigationView({super.key});
@@ -29,17 +27,6 @@ class BottomNavigationViewState extends ConsumerState<BottomNavigationView> {
     final selectedIndex = ref.watch(bottomNavigationProvider);
     return Scaffold(
       body: _body(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.pushNamed(Routes.pdfAdd);
-        },
-        backgroundColor: primaryColor,
-        child: const Icon(
-          Icons.add,
-          color: Colors.white,
-          size: 30,
-        ),
-      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         onTap: (index) {

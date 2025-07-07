@@ -2,10 +2,12 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pdf_reader/core/provider/provider.dart';
 import 'package:pdf_reader/core/theme/colors.dart';
 import 'package:pdf_reader/core/utils/extension/ref.dart';
 import 'package:pdf_reader/modules/home/home.dart';
+import 'package:pdf_reader/router/router.dart';
 import 'package:pdf_reader/shared/widgets/provider_selector.dart';
 
 class HomeView extends ConsumerWidget {
@@ -18,7 +20,7 @@ class HomeView extends ConsumerWidget {
       backgroundColor: backgroundColor,
       appBar: AppBar(
         title: const Text('PDF Reader'),
-        backgroundColor:  primaryColor,
+        backgroundColor: primaryColor,
         titleTextStyle: const TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.bold,
@@ -44,6 +46,18 @@ class HomeView extends ConsumerWidget {
                 return _body(ref);
               },
             ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.pushNamed(Routes.pdfAdd);
+        },
+        elevation: 0,
+        backgroundColor: primaryColor,
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+          size: 30,
+        ),
+      ),
     );
   }
 
