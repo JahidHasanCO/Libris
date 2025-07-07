@@ -6,11 +6,18 @@ import 'package:pdf_reader/core/provider/provider.dart';
 import 'package:pdf_reader/core/theme/colors.dart';
 import 'package:pdf_reader/core/utils/extension/ref.dart';
 import 'package:pdf_reader/router/router.dart';
+import 'package:pdf_reader/shared/enums/menu.dart';
 import 'package:pdf_reader/shared/widgets/pdf_list_tile.dart';
 import 'package:pdf_reader/shared/widgets/widgets.dart';
 
 class PdfList extends ConsumerWidget {
   const PdfList({super.key});
+
+  static List<Menu> filterMenus = [
+    Menu.edit,
+    Menu.delete,
+    Menu.moveToPrivate,
+  ];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -75,11 +82,19 @@ class PdfList extends ConsumerWidget {
                 category: pdf.categoryName ?? 'Other',
                 totalPages: pdf.totalPages ?? 0,
                 currentPage: pdf.currentPage,
+                menuItems: filterMenus,
                 onTap: () {
                   context.pushNamed(
                     Routes.pdfRead,
                     pathParameters: {'id': pdf.id.toString()},
                   );
+                },
+                onMenuSelected: (index) {
+                  if (filterMenus[index] == Menu.delete) {
+                    ref.read(homeProvider.notifier).deletePdf(pdf.id);
+                  } else if (filterMenus[index] == Menu.moveToPrivate) {
+                    ref.read(homeProvider.notifier).moveToPrivate(pdf.id);
+                  }
                 },
               );
             },
@@ -98,11 +113,19 @@ class PdfList extends ConsumerWidget {
                 subtitle: pdf.categoryName ?? 'Other',
                 totalPages: pdf.totalPages ?? 0,
                 currentPage: pdf.currentPage,
+                menuItems: filterMenus,
                 onTap: () {
                   context.pushNamed(
                     Routes.pdfRead,
                     pathParameters: {'id': pdf.id.toString()},
                   );
+                },
+                onMenuSelected: (index) {
+                  if (filterMenus[index] == Menu.delete) {
+                    ref.read(homeProvider.notifier).deletePdf(pdf.id);
+                  } else if (filterMenus[index] == Menu.moveToPrivate) {
+                    ref.read(homeProvider.notifier).moveToPrivate(pdf.id);
+                  }
                 },
               );
             },

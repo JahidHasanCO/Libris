@@ -7,11 +7,18 @@ import 'package:pdf_reader/core/theme/colors.dart';
 import 'package:pdf_reader/core/utils/extension/ref.dart';
 import 'package:pdf_reader/core/utils/extension/string.dart';
 import 'package:pdf_reader/router/router.dart';
+import 'package:pdf_reader/shared/enums/menu.dart';
 import 'package:pdf_reader/shared/widgets/pdf_list_tile.dart';
 import 'package:pdf_reader/shared/widgets/widgets.dart';
 
 class PdfList extends ConsumerWidget {
   const PdfList({super.key});
+
+  static List<Menu> filterMenus = [
+    Menu.edit,
+    Menu.delete,
+    Menu.moveToPublic,
+  ];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -35,9 +42,7 @@ class PdfList extends ConsumerWidget {
               ),
               InkWell(
                 onTap: () {
-                  ref
-                      .read(privateFolderProvider.notifier)
-                      .changePdfViewType(0);
+                  ref.read(privateFolderProvider.notifier).changePdfViewType(0);
                 },
                 child: Icon(
                   Symbols.list,
@@ -48,9 +53,7 @@ class PdfList extends ConsumerWidget {
               const SizedBox(width: 4),
               InkWell(
                 onTap: () {
-                  ref
-                      .read(privateFolderProvider.notifier)
-                      .changePdfViewType(1);
+                  ref.read(privateFolderProvider.notifier).changePdfViewType(1);
                 },
                 child: Icon(
                   Symbols.grid_view,
@@ -80,11 +83,23 @@ class PdfList extends ConsumerWidget {
                 category: pdf.createdAt?.toDdMmYy() ?? 'Other',
                 totalPages: pdf.totalPages ?? 0,
                 currentPage: pdf.currentPage,
+                menuItems: filterMenus,
                 onTap: () {
                   context.pushNamed(
                     Routes.pdfRead,
                     pathParameters: {'id': pdf.id.toString()},
                   );
+                },
+                onMenuSelected: (index) {
+                  if (filterMenus[index] == Menu.delete) {
+                    ref
+                        .read(privateFolderProvider.notifier)
+                        .deletePdf(pdf.id ?? 0);
+                  } else if (filterMenus[index] == Menu.moveToPublic) {
+                    ref
+                        .read(privateFolderProvider.notifier)
+                        .moveToPublic(pdf.id ?? 0);
+                  }
                 },
               );
             },
@@ -103,11 +118,23 @@ class PdfList extends ConsumerWidget {
                 subtitle: pdf.createdAt?.toDdMmYy() ?? 'Other',
                 totalPages: pdf.totalPages ?? 0,
                 currentPage: pdf.currentPage,
+                menuItems: filterMenus,
                 onTap: () {
                   context.pushNamed(
                     Routes.pdfRead,
                     pathParameters: {'id': pdf.id.toString()},
                   );
+                },
+                onMenuSelected: (index) {
+                  if (filterMenus[index] == Menu.delete) {
+                    ref
+                        .read(privateFolderProvider.notifier)
+                        .deletePdf(pdf.id ?? 0);
+                  } else if (filterMenus[index] == Menu.moveToPublic) {
+                    ref
+                        .read(privateFolderProvider.notifier)
+                        .moveToPublic(pdf.id ?? 0);
+                  }
                 },
               );
             },

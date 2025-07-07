@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:pdf_reader/core/theme/colors.dart';
 
 class ContinuePdfCard extends StatelessWidget {
@@ -41,7 +42,7 @@ class ContinuePdfCard extends StatelessWidget {
                 children: [
                   const SizedBox(height: 20),
                   const Icon(
-                    Icons.picture_as_pdf,
+                    Symbols.picture_as_pdf,
                     color: greyColor,
                     size: 45,
                   ),

@@ -98,6 +98,23 @@ class PdfRepo {
     return database.insert(_tableName, pdf.toMap());
   }
 
+  Future<int> updateIsProtected({
+    required int id,
+    required bool isProtected,
+  }) async {
+    final database = await db.database;
+
+    return database.update(
+      'pdfs',
+      {
+        'is_protected': isProtected ? 1 : 0,
+        'updated_at': DateTime.now().toIso8601String(),
+      },
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+
   Future<int> update(PDF pdf) async {
     try {
       final database = await db.database;

@@ -43,6 +43,17 @@ class PrivateFolderProvider extends AutoDisposeNotifier<PrivateFolderState> {
     }
   }
 
+  Future<void> deletePdf(int pdfId) async {
+    await _pdfRepo.delete(pdfId);
+    await onRefresh();
+  }
+
+  Future<void> moveToPublic(int pdfId) async {
+    await _pdfRepo.updateIsProtected(id: pdfId, isProtected: false);
+    await onRefresh();
+  }
+
+
   Future<void> changePdfViewType(int viewType) async {
     if (viewType == state.pdfViewType) return;
     await _prefs?.setInt('pdf_view_type', viewType);

@@ -48,6 +48,16 @@ class CategoryDetailsProvider
     }
   }
 
+  Future<void> deletePdf(int pdfId) async {
+    await _pdfRepo.delete(pdfId);
+    await onRefresh();
+  }
+
+  Future<void> moveToPrivate(int pdfId) async {
+    await _pdfRepo.updateIsProtected(id: pdfId, isProtected: true);
+    await onRefresh();
+  }
+
   Future<void> changePdfViewType(int viewType) async {
     if (viewType == state.pdfViewType) return;
     await _prefs?.setInt('pdf_view_type', viewType);

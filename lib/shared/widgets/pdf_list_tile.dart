@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:pdf_reader/core/theme/colors.dart';
+import 'package:pdf_reader/shared/enums/menu.dart';
+import 'package:pdf_reader/shared/widgets/widgets.dart';
 
 class PdfListTile extends StatelessWidget {
   const PdfListTile({
     required this.title,
     required this.subtitle,
+    required this.menuItems,
     this.totalPages = 0,
     this.currentPage = 0,
+    this.onMenuSelected,
     super.key,
     this.onTap,
   });
   final String title;
   final String subtitle;
+  final List<Menu> menuItems;
+  final void Function(int index)? onMenuSelected;
   final VoidCallback? onTap;
   final int totalPages;
   final int currentPage;
@@ -37,7 +44,7 @@ class PdfListTile extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: const Icon(
-                  Icons.picture_as_pdf,
+                  Symbols.picture_as_pdf,
                   color: greyColor,
                 ),
               ),
@@ -60,9 +67,21 @@ class PdfListTile extends StatelessWidget {
                 color: textColorLight,
               ),
               onTap: onTap,
-              trailing: Icon(
-                Icons.chevron_right,
-                color: textColorLight.withValues(alpha: 0.5),
+              trailing: PopupAppMenuButton(
+                menus: menuItems,
+                onSelected: (int index) {
+                  if (onMenuSelected != null) {
+                    onMenuSelected?.call(index);
+                  }
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(4),
+                  child: Icon(
+                    Symbols.more_vert,
+                    color: textColor,
+                    size: 24,
+                  ),
+                ),
               ),
             ),
             if (totalPages > 0)

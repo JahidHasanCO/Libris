@@ -59,6 +59,16 @@ class HomeProvider extends Notifier<HomeState> {
     }
   }
 
+  Future<void> deletePdf(int pdfId) async {
+    await _pdfRepo.delete(pdfId);
+    await onRefresh();
+  }
+
+  Future<void> moveToPrivate(int pdfId) async {
+    await _pdfRepo.updateIsProtected(id: pdfId, isProtected: true);
+    await onRefresh();
+  }
+
   Future<void> changeCategoryViewType(int viewType) async {
     if (viewType == state.categoryViewType) return;
     await _prefs?.setInt('category_view_type', viewType);
