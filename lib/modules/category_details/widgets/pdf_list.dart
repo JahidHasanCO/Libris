@@ -5,8 +5,10 @@ import 'package:libris/core/provider/provider.dart';
 import 'package:libris/core/theme/colors.dart';
 import 'package:libris/core/utils/extension/ref.dart';
 import 'package:libris/core/utils/extension/string.dart';
+import 'package:libris/modules/pdf_entry/pdf_entry.dart';
 import 'package:libris/router/router.dart';
 import 'package:libris/shared/enums/menu.dart';
+import 'package:libris/shared/models/models.dart';
 import 'package:libris/shared/widgets/pdf_list_tile.dart';
 import 'package:libris/shared/widgets/widgets.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -19,6 +21,27 @@ class PdfList extends ConsumerWidget {
     Menu.delete,
     Menu.moveToPrivate,
   ];
+
+  Future<void> onMenuSelected(WidgetRef ref, int index, PDF pdf) async {
+    if (filterMenus[index] == Menu.edit) {
+      await PdfEntryBottomSheet.show(
+        ref.context,
+        isUpdate: true,
+        entry: pdf,
+      );
+      if (!ref.context.mounted) return;
+      await ref.read(categoryDetailsProvider.notifier).onRefresh();
+    }
+    if (filterMenus[index] == Menu.delete) {
+      if (!ref.context.mounted) return;
+      await ref.read(categoryDetailsProvider.notifier).deletePdf(pdf.id ?? 0);
+    } else if (filterMenus[index] == Menu.moveToPrivate) {
+      if (!ref.context.mounted) return;
+      await ref
+          .read(categoryDetailsProvider.notifier)
+          .moveToPrivate(pdf.id ?? 0);
+    }
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -94,17 +117,7 @@ class PdfList extends ConsumerWidget {
                     pathParameters: {'id': pdf.id.toString()},
                   );
                 },
-                onMenuSelected: (index) {
-                  if (filterMenus[index] == Menu.delete) {
-                    ref
-                        .read(categoryDetailsProvider.notifier)
-                        .deletePdf(pdf.id ?? 0);
-                  } else if (filterMenus[index] == Menu.moveToPrivate) {
-                    ref
-                        .read(categoryDetailsProvider.notifier)
-                        .moveToPrivate(pdf.id ?? 0);
-                  }
-                },
+                onMenuSelected: (index) => onMenuSelected(ref, index, pdf),
               );
             },
           ),
@@ -129,17 +142,7 @@ class PdfList extends ConsumerWidget {
                     pathParameters: {'id': pdf.id.toString()},
                   );
                 },
-                onMenuSelected: (index) {
-                  if (filterMenus[index] == Menu.delete) {
-                    ref
-                        .read(categoryDetailsProvider.notifier)
-                        .deletePdf(pdf.id ?? 0);
-                  } else if (filterMenus[index] == Menu.moveToPrivate) {
-                    ref
-                        .read(categoryDetailsProvider.notifier)
-                        .moveToPrivate(pdf.id ?? 0);
-                  }
-                },
+                onMenuSelected: (index) => onMenuSelected(ref, index, pdf),
               );
             },
             separatorBuilder: (context, index) => const SizedBox(height: 10),

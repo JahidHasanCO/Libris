@@ -5,7 +5,7 @@ import 'package:libris/modules/bottom_navigation/bottom_navigation.dart'
 import 'package:libris/modules/category_details/category_details.dart';
 import 'package:libris/modules/home/home.dart';
 import 'package:libris/modules/onboard/onboard.dart';
-import 'package:libris/modules/pdf_add/pdf_add.dart';
+import 'package:libris/modules/pdf_entry/pdf_entry.dart';
 import 'package:libris/modules/pdf_read/pdf_read.dart';
 import 'package:libris/modules/pdf_theme/pdf_theme.dart';
 import 'package:libris/modules/private_folder/private_folder.dart';
@@ -35,9 +35,10 @@ final onboardProvider =
       OnboardProvider.new,
     );
 
-final pdfAddProvider = AutoDisposeNotifierProvider<PdfAddProvider, PdfAddState>(
-  PdfAddProvider.new,
-);
+final pdfEntryProvider =
+    AutoDisposeNotifierProvider<PdfEntryProvider, PdfEntryState>(
+      PdfEntryProvider.new,
+    );
 final pdfReadProvider =
     AutoDisposeNotifierProvider<PdfReadProvider, PdfReadState>(
       PdfReadProvider.new,

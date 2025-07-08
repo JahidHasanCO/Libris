@@ -9,16 +9,16 @@ import 'package:libris/shared/widgets/filled_outlined_dropdown_form_field.dart';
 import 'package:libris/shared/widgets/filled_outlined_text_field.dart';
 import 'package:libris/shared/widgets/rounded_button.dart';
 
-class PdfAddBottomSheet extends ConsumerStatefulWidget with PdfValidator {
-  const PdfAddBottomSheet({required this.isUpdate, this.entry, super.key});
+class PdfEntryBottomSheet extends ConsumerStatefulWidget with PdfValidator {
+  const PdfEntryBottomSheet({required this.isUpdate, this.entry, super.key});
 
   final bool isUpdate;
-  final CategoryPDF? entry;
+  final PDF? entry;
 
   static Future<void> show(
     BuildContext context, {
     bool isUpdate = false,
-    CategoryPDF? entry,
+    PDF? entry,
   }) async {
     await showModalBottomSheet<void>(
       context: context,
@@ -33,7 +33,7 @@ class PdfAddBottomSheet extends ConsumerStatefulWidget with PdfValidator {
         padding: EdgeInsets.only(
           bottom: MediaQuery.of(context).viewInsets.bottom,
         ),
-        child: PdfAddBottomSheet(
+        child: PdfEntryBottomSheet(
           isUpdate: isUpdate,
           entry: entry,
         ),
@@ -45,7 +45,7 @@ class PdfAddBottomSheet extends ConsumerStatefulWidget with PdfValidator {
   PdfAddViewState createState() => PdfAddViewState();
 }
 
-class PdfAddViewState extends ConsumerState<PdfAddBottomSheet> {
+class PdfAddViewState extends ConsumerState<PdfEntryBottomSheet> {
   // form key
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController titleController = TextEditingController();
@@ -64,7 +64,7 @@ class PdfAddViewState extends ConsumerState<PdfAddBottomSheet> {
             break;
           }
         }
-        ref.read(pdfAddProvider.notifier).onCategoryChanged(selectedCategory);
+        ref.read(pdfEntryProvider.notifier).onCategoryChanged(selectedCategory);
       });
     }
   }
@@ -129,7 +129,7 @@ class PdfAddViewState extends ConsumerState<PdfAddBottomSheet> {
                       (s) => s.categories,
                     );
                     final selectedCategory = ref.select(
-                      pdfAddProvider,
+                      pdfEntryProvider,
                       (s) => s.selectedCategory,
                     );
                     return FilledOutlinedDropdownFormField<int?>(
@@ -145,7 +145,7 @@ class PdfAddViewState extends ConsumerState<PdfAddBottomSheet> {
                           }
                         }
                         ref
-                            .read(pdfAddProvider.notifier)
+                            .read(pdfEntryProvider.notifier)
                             .onCategoryChanged(category);
                       },
                       items: categories
@@ -172,7 +172,7 @@ class PdfAddViewState extends ConsumerState<PdfAddBottomSheet> {
               if (!_formKey.currentState!.validate()) return;
               final title = titleController.text.trim();
               await ref
-                  .read(pdfAddProvider.notifier)
+                  .read(pdfEntryProvider.notifier)
                   .updatePdf(
                     title,
                     widget.entry,

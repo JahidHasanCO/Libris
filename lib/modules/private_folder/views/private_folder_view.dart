@@ -71,7 +71,7 @@ class PdfReadViewState extends ConsumerState<PrivateFolderView> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             WidgetsBinding.instance.addPostFrameCallback((_) async {
-              final data = await ref.read(pdfAddProvider.notifier).import();
+              final data = await ref.read(pdfEntryProvider.notifier).import();
               if (data != null && context.mounted) {
                 await context.pushNamed(
                   Routes.pdfRead,

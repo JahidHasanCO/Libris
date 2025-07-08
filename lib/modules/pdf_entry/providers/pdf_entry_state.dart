@@ -2,8 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:libris/shared/enums/state.dart';
 import 'package:libris/shared/models/models.dart';
 
-class PdfAddState extends Equatable {
-  const PdfAddState({
+class PdfEntryState extends Equatable {
+  const PdfEntryState({
     this.status = State.initial,
     this.message = '',
     this.selectedCategory,
@@ -12,12 +12,12 @@ class PdfAddState extends Equatable {
   final String message;
   final Category? selectedCategory;
 
-  PdfAddState copyWith({
+  PdfEntryState copyWith({
     State? status,
     String? message,
     Category? selectedCategory,
   }) {
-    return PdfAddState(
+    return PdfEntryState(
       status: status ?? this.status,
       message: message ?? this.message,
       selectedCategory: selectedCategory ?? this.selectedCategory,

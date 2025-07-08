@@ -9,6 +9,7 @@ class CategoryPDF {
     this.coverPath,
     this.totalPages,
     this.currentPage = 0,
+    this.isProtected,
     this.categoryId,
     this.categoryName,
     this.createdAt,
@@ -22,6 +23,7 @@ class CategoryPDF {
     size: json['size'] as int?,
     coverPath: json['cover_path'] as String?,
     totalPages: json['total_pages'] as int?,
+    isProtected: json['is_protected'] == 1,
     currentPage: json['current_page'] as int? ?? 0,
     categoryId: json['category_id'] as int?,
     categoryName: json['category_name'] as String?,
@@ -37,6 +39,7 @@ class CategoryPDF {
   final int? totalPages;
   final int currentPage;
   final int? categoryId;
+  final bool? isProtected;
   final String? categoryName;
   final String? createdAt;
   final String? updatedAt;
@@ -48,6 +51,7 @@ class CategoryPDF {
       name: name,
       size: size,
       coverPath: coverPath,
+      isProtected: isProtected,
       totalPages: totalPages,
       currentPage: currentPage,
       categoryId: categoryId ?? 0,
