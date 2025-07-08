@@ -23,20 +23,22 @@ class BottomNavigationViewState extends ConsumerState<PrivateFolderPinView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: backgroundColor,
-      appBar: AppBar(
-        title: const Text('Private Folder'),
-        backgroundColor: primaryColor,
-        iconTheme: const IconThemeData(color: Colors.white),
-        titleTextStyle: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        appBar: AppBar(
+          title: const Text('Private Folder'),
+          backgroundColor: primaryColor,
+          iconTheme: const IconThemeData(color: Colors.white),
+          titleTextStyle: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          elevation: 0,
         ),
-        elevation: 0,
+        body: _body(),
       ),
-      body: _body(),
     );
   }
 

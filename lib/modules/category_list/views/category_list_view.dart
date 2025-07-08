@@ -11,28 +11,30 @@ class CategoryListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: backgroundColor,
-      appBar: AppBar(
-        backgroundColor: primaryColor,
-        iconTheme: const IconThemeData(color: Colors.white),
-        title: const Text(
-          'Category List',
-          style: TextStyle(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        appBar: AppBar(
+          backgroundColor: primaryColor,
+          iconTheme: const IconThemeData(color: Colors.white),
+          title: const Text(
+            'Category List',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          titleTextStyle: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
+          centerTitle: false,
+          elevation: 0,
         ),
-        titleTextStyle: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
-        centerTitle: false,
-        elevation: 0,
+        body: _body(),
       ),
-      body: _body(),
     );
   }
 

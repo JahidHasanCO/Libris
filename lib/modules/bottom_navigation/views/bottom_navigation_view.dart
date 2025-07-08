@@ -26,42 +26,44 @@ class BottomNavigationViewState extends ConsumerState<BottomNavigationView> {
   @override
   Widget build(BuildContext context) {
     final selectedIndex = ref.watch(bottomNavigationProvider);
-    return Scaffold(
-      body: _body(),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: selectedIndex,
-        onTap: (index) {
-          ref.read(bottomNavigationProvider.notifier).setIndex(index);
-        },
-        backgroundColor: primaryColor.withAlpha(40),
-        elevation: 0,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        selectedItemColor: primaryColor,
-        unselectedItemColor: Colors.grey.shade300,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: NavItem(
-              icon: Symbols.home,
-              isSelected: selectedIndex == 0,
+    return SafeArea(
+      child: Scaffold(
+        body: _body(),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: selectedIndex,
+          onTap: (index) {
+            ref.read(bottomNavigationProvider.notifier).setIndex(index);
+          },
+          backgroundColor: primaryColor.withAlpha(40),
+          elevation: 0,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          selectedItemColor: primaryColor,
+          unselectedItemColor: Colors.grey.shade300,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: NavItem(
+                icon: Symbols.home,
+                isSelected: selectedIndex == 0,
+              ),
+              label: '',
             ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: NavItem(
-              icon: Symbols.newsstand,
-              isSelected: selectedIndex == 1,
+            BottomNavigationBarItem(
+              icon: NavItem(
+                icon: Symbols.newsstand,
+                isSelected: selectedIndex == 1,
+              ),
+              label: '',
             ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: NavItem(
-              icon: Symbols.menu,
-              isSelected: selectedIndex == 2,
+            BottomNavigationBarItem(
+              icon: NavItem(
+                icon: Symbols.menu,
+                isSelected: selectedIndex == 2,
+              ),
+              label: '',
             ),
-            label: '',
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart' show GoRoute;
+import 'package:libris/core/theme/colors.dart';
 import 'package:libris/modules/bottom_navigation/bottom_navigation.dart';
 import 'package:libris/router/router.dart' show AsPathExt, Routes;
 
@@ -19,7 +20,7 @@ class BottomNavigationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
+        statusBarColor: primaryDarkColor,
         statusBarIconBrightness: Brightness.dark,
         systemNavigationBarColor: Colors.transparent,
         systemNavigationBarIconBrightness: Brightness.dark,

@@ -14,15 +14,17 @@ class PdfThemeViewState extends ConsumerState<PdfThemeView> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(pdfThemeProvider);
-    return Scaffold(
-      backgroundColor: backgroundColor,
-      appBar: AppBar(
-        title: const Text('PDF Theme'),
-      ),
-      body: state.when(
-        data: _body,
-        error: (_, _) => _error(),
-        loading: _loading,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        appBar: AppBar(
+          title: const Text('PDF Theme'),
+        ),
+        body: state.when(
+          data: _body,
+          error: (_, _) => _error(),
+          loading: _loading,
+        ),
       ),
     );
   }

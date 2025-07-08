@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
 import 'package:libris/core/theme/colors.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 class ContinuePdfCard extends StatelessWidget {
   const ContinuePdfCard({
@@ -49,7 +49,7 @@ class ContinuePdfCard extends StatelessWidget {
                   const SizedBox(height: 10),
                   Text(
                     title,
-                    maxLines: 2,
+                    maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontSize: 20,

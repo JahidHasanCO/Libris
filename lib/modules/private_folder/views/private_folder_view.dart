@@ -78,49 +78,51 @@ class PdfReadViewState extends ConsumerState<PrivateFolderView> {
       privateFolderProvider,
       (s) => s.status.isLoading,
     );
-    return Scaffold(
-      backgroundColor: backgroundColor,
-      appBar: AppBar(
-        backgroundColor: primaryColor,
-        iconTheme: const IconThemeData(color: Colors.white),
-        title: const Text(
-          'Private Folder',
-          style: TextStyle(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        appBar: AppBar(
+          backgroundColor: primaryColor,
+          iconTheme: const IconThemeData(color: Colors.white),
+          title: const Text(
+            'Private Folder',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          titleTextStyle: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
+          centerTitle: false,
+          elevation: 0,
         ),
-        titleTextStyle: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
-        centerTitle: false,
-        elevation: 0,
-      ),
-      body: isLoading
-          ? _emptyOrLoadingBody(ref, isLoading: true)
-          : ProviderSelector(
-              provider: privateFolderProvider,
-              selector: (s) => s.privatePdfs,
-              builder: (context, pdfs) {
-                if (pdfs.isEmpty) return _emptyOrLoadingBody(ref);
-                return _body(ref);
-              },
-            ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          WidgetsBinding.instance.addPostFrameCallback((_) async {
-            await ref.read(pdfAddProvider.notifier).import(isPrivate: true);
-          });
-        },
-        elevation: 0,
-        backgroundColor: primaryColor,
-        child: const Icon(
-          Symbols.add,
-          color: Colors.white,
-          size: 30,
+        body: isLoading
+            ? _emptyOrLoadingBody(ref, isLoading: true)
+            : ProviderSelector(
+                provider: privateFolderProvider,
+                selector: (s) => s.privatePdfs,
+                builder: (context, pdfs) {
+                  if (pdfs.isEmpty) return _emptyOrLoadingBody(ref);
+                  return _body(ref);
+                },
+              ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            WidgetsBinding.instance.addPostFrameCallback((_) async {
+              await ref.read(pdfAddProvider.notifier).import(isPrivate: true);
+            });
+          },
+          elevation: 0,
+          backgroundColor: primaryColor,
+          child: const Icon(
+            Symbols.add,
+            color: Colors.white,
+            size: 30,
+          ),
         ),
       ),
     );

@@ -40,37 +40,39 @@ class PdfReadViewState extends ConsumerState<CategoryDetailsView> {
       categoryDetailsProvider,
       (s) => s.status.isLoading,
     );
-    return Scaffold(
-      backgroundColor: backgroundColor,
-      appBar: AppBar(
-        backgroundColor: primaryColor,
-        iconTheme: const IconThemeData(color: Colors.white),
-        title: Text(
-          category?.name ?? 'Category Details',
-          style: const TextStyle(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        appBar: AppBar(
+          backgroundColor: primaryColor,
+          iconTheme: const IconThemeData(color: Colors.white),
+          title: Text(
+            category?.name ?? 'Category Details',
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          titleTextStyle: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
+          centerTitle: false,
+          elevation: 0,
         ),
-        titleTextStyle: const TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
-        centerTitle: false,
-        elevation: 0,
+        body: isLoading
+            ? _emptyOrLoadingBody(ref, isLoading: true)
+            : ProviderSelector(
+                provider: categoryDetailsProvider,
+                selector: (s) => s.categoryPdfs,
+                builder: (context, categoryPdfs) {
+                  if (categoryPdfs.isEmpty) return _emptyOrLoadingBody(ref);
+                  return _body(ref);
+                },
+              ),
       ),
-      body: isLoading
-          ? _emptyOrLoadingBody(ref, isLoading: true)
-          : ProviderSelector(
-              provider: categoryDetailsProvider,
-              selector: (s) => s.categoryPdfs,
-              builder: (context, categoryPdfs) {
-                if (categoryPdfs.isEmpty) return _emptyOrLoadingBody(ref);
-                return _body(ref);
-              },
-            ),
     );
   }
 
