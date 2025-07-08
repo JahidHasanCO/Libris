@@ -22,6 +22,16 @@ See how much you've read and your progress in each document at a glance.
 ✅ **Private Folder Protection**  
 Secure your confidential documents in a protected folder for privacy.
 
+### Screen Preview
+
+| Preview 1 | Preview 2 | Preview 3 |
+|-----------|-----------|-----------|
+| ![Libris App Preview](/ART/screenshot_1.png) | ![Libris App Preview](/ART/screenshot_2.png) | ![Libris App Preview](/ART/screenshot_3.png) |
+
+| Preview 4 | Preview 5 | Preview 6 |
+|-----------|-----------|-----------|
+| ![Libris App Preview](/ART/screenshot_4.png) | ![Libris App Preview](/ART/screenshot_5.png) | ![Libris App Preview](/ART/screenshot_6.png) |
+
 
 ### 💡 **Our Vision**
 

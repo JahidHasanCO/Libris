@@ -82,7 +82,7 @@ class PdfReadViewState extends ConsumerState<PrivateFolderView> {
                   pathParameters: {'id': data.id.toString()},
                 );
                 if (!context.mounted) return;
-                await ref.read(homeProvider.notifier).onRefresh();
+                await ref.read(privateFolderProvider.notifier).onRefresh();
               }
             });
           },
