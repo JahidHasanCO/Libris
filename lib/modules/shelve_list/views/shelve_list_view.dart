@@ -81,7 +81,7 @@ class ShelveListView extends ConsumerWidget {
                 child: ImageFiltered(
                   imageFilter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
                   child: Image.asset(
-                    'assets/images/empty_book.png',
+                    'assets/images/shelve.png',
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -91,7 +91,7 @@ class ShelveListView extends ConsumerWidget {
                 child: isLoading
                     ? const CircularProgressIndicator()
                     : Image.asset(
-                        'assets/images/empty_book.png',
+                        'assets/images/shelve.png',
                         fit: BoxFit.contain,
                         width: double.infinity,
                         height: 200,
@@ -125,7 +125,7 @@ class ShelveListView extends ConsumerWidget {
           child: ImageFiltered(
             imageFilter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
             child: Image.asset(
-              'assets/images/empty_book.png',
+              'assets/images/shelve.png',
               fit: BoxFit.cover,
             ),
           ),
