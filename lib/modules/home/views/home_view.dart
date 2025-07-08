@@ -7,7 +7,6 @@ import 'package:libris/core/provider/provider.dart';
 import 'package:libris/core/theme/colors.dart';
 import 'package:libris/core/utils/extension/ref.dart';
 import 'package:libris/modules/home/home.dart';
-import 'package:libris/modules/pdf_add/pdf_add.dart';
 import 'package:libris/router/router.dart';
 import 'package:libris/shared/widgets/provider_selector.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
@@ -15,53 +14,8 @@ import 'package:material_symbols_icons/material_symbols_icons.dart';
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});
 
-  void _listenForAddPdf(WidgetRef ref) {
-    ref
-      ..listen(pdfAddProvider.select((s) => s.isBottomSheetOpen), (
-        previous,
-        next,
-      ) {
-        if (previous != next && next) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            showModalBottomSheet<void>(
-              context: ref.context,
-              isScrollControlled: true,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  topRight: Radius.circular(12),
-                ),
-              ),
-              builder: (context) => Padding(
-                padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom,
-                ),
-                child: const PdfAddView(),
-              ),
-            ).then((value) {
-              if (ref.context.mounted) {
-                ref.read(homeProvider.notifier).onRefresh();
-              }
-              if (ref.context.mounted && Navigator.of(ref.context).canPop()) {
-                Navigator.pop(ref.context);
-              }
-            });
-          });
-        }
-      })
-      ..listen(pdfAddProvider, (previous, next) {
-        if (next.status.isError && ref.context.mounted) {
-          Navigator.pop(ref.context);
-          ScaffoldMessenger.of(ref.context).showSnackBar(
-            SnackBar(content: Text(next.message)),
-          );
-        }
-      });
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    _listenForAddPdf(ref);
     final isLoading = ref.select(homeProvider, (s) => s.status.isLoading);
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -107,7 +61,15 @@ class HomeView extends ConsumerWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           WidgetsBinding.instance.addPostFrameCallback((_) async {
-            await ref.read(pdfAddProvider.notifier).import();
+            final data = await ref.read(pdfAddProvider.notifier).import();
+            if (data != null && context.mounted) {
+              await context.pushNamed(
+                Routes.pdfRead,
+                pathParameters: {'id': data.id.toString()},
+              );
+              if (!context.mounted) return;
+              await ref.read(homeProvider.notifier).onRefresh();
+            }
           });
         },
         elevation: 0,

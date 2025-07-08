@@ -9,26 +9,64 @@ import 'package:libris/shared/widgets/filled_outlined_dropdown_form_field.dart';
 import 'package:libris/shared/widgets/filled_outlined_text_field.dart';
 import 'package:libris/shared/widgets/rounded_button.dart';
 
-class PdfAddView extends ConsumerStatefulWidget with PdfValidator {
-  const PdfAddView({super.key});
+class PdfAddBottomSheet extends ConsumerStatefulWidget with PdfValidator {
+  const PdfAddBottomSheet({required this.isUpdate, this.entry, super.key});
+
+  final bool isUpdate;
+  final CategoryPDF? entry;
+
+  static Future<void> show(
+    BuildContext context, {
+    bool isUpdate = false,
+    CategoryPDF? entry,
+  }) async {
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(12),
+          topRight: Radius.circular(12),
+        ),
+      ),
+      builder: (context) => Padding(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        child: PdfAddBottomSheet(
+          isUpdate: isUpdate,
+          entry: entry,
+        ),
+      ),
+    );
+  }
 
   @override
   PdfAddViewState createState() => PdfAddViewState();
 }
 
-class PdfAddViewState extends ConsumerState<PdfAddView> {
+class PdfAddViewState extends ConsumerState<PdfAddBottomSheet> {
   // form key
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   TextEditingController titleController = TextEditingController();
+  Category? selectedCategory;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final title = ref.read(pdfAddProvider).title;
-      titleController.text = title;
-    });
+    if (widget.isUpdate && widget.entry != null) {
+      titleController.text = widget.entry!.name ?? '';
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        final categoryList = ref.read(appProvider).categories;
+        for (final category in categoryList) {
+          if (category.id == widget.entry!.categoryId) {
+            selectedCategory = category;
+            break;
+          }
+        }
+        ref.read(pdfAddProvider.notifier).onCategoryChanged(selectedCategory);
+      });
+    }
   }
 
   @override
@@ -46,10 +84,10 @@ class PdfAddViewState extends ConsumerState<PdfAddView> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Row(
             children: [
-              const Expanded(
+              Expanded(
                 child: Text(
-                  'Add PDF',
-                  style: TextStyle(
+                  widget.isUpdate ? 'Update PDF' : 'Add PDF',
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: textColor,
@@ -133,11 +171,16 @@ class PdfAddViewState extends ConsumerState<PdfAddView> {
             onPressed: () async {
               if (!_formKey.currentState!.validate()) return;
               final title = titleController.text.trim();
-              await ref.read(pdfAddProvider.notifier).updatePdf(title);
+              await ref
+                  .read(pdfAddProvider.notifier)
+                  .updatePdf(
+                    title,
+                    widget.entry,
+                  );
               if (!context.mounted) return;
               Navigator.pop(context);
             },
-            title: 'Save',
+            title: widget.isUpdate ? 'Update' : 'Save',
           ),
         ),
         const SizedBox(height: 20),

@@ -1,3 +1,5 @@
+import 'package:libris/shared/models/models.dart';
+
 class CategoryPDF {
   CategoryPDF({
     required this.id,
@@ -26,6 +28,7 @@ class CategoryPDF {
     createdAt: json['created_at'] as String?,
     updatedAt: json['updated_at'] as String?,
   );
+
   final int id;
   final String filePath;
   final String? name;
@@ -37,4 +40,19 @@ class CategoryPDF {
   final String? categoryName;
   final String? createdAt;
   final String? updatedAt;
+
+  PDF toPDF() {
+    return PDF(
+      id: id,
+      filePath: filePath,
+      name: name,
+      size: size,
+      coverPath: coverPath,
+      totalPages: totalPages,
+      currentPage: currentPage,
+      categoryId: categoryId ?? 0,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+    );
+  }
 }

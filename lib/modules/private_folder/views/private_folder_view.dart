@@ -2,11 +2,12 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:libris/core/provider/provider.dart';
 import 'package:libris/core/theme/colors.dart';
 import 'package:libris/core/utils/extension/ref.dart';
-import 'package:libris/modules/pdf_add/pdf_add.dart';
 import 'package:libris/modules/private_folder/widgets/pdf_list.dart';
+import 'package:libris/router/router.dart';
 import 'package:libris/shared/models/models.dart';
 import 'package:libris/shared/widgets/widgets.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -29,51 +30,8 @@ class PdfReadViewState extends ConsumerState<PrivateFolderView> {
     });
   }
 
-  void _listenForAddPdf() {
-    ref
-      ..listen(pdfAddProvider.select((s) => s.isBottomSheetOpen), (
-        previous,
-        next,
-      ) {
-        if (previous != next && next) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            showModalBottomSheet<void>(
-              context: context,
-              isScrollControlled: true,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  topRight: Radius.circular(12),
-                ),
-              ),
-              builder: (context) => Padding(
-                padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom,
-                ),
-                child: const PdfAddView(),
-              ),
-            ).then((value) {
-              if (mounted) ref.read(privateFolderProvider.notifier).onRefresh();
-              if (mounted && Navigator.of(context).canPop()) {
-                Navigator.pop(context);
-              }
-            });
-          });
-        }
-      })
-      ..listen(pdfAddProvider, (previous, next) {
-        if (next.status.isError && ref.context.mounted) {
-          Navigator.pop(ref.context);
-          ScaffoldMessenger.of(ref.context).showSnackBar(
-            SnackBar(content: Text(next.message)),
-          );
-        }
-      });
-  }
-
   @override
   Widget build(BuildContext context) {
-    _listenForAddPdf();
     final isLoading = ref.select(
       privateFolderProvider,
       (s) => s.status.isLoading,
@@ -113,7 +71,15 @@ class PdfReadViewState extends ConsumerState<PrivateFolderView> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             WidgetsBinding.instance.addPostFrameCallback((_) async {
-              await ref.read(pdfAddProvider.notifier).import(isPrivate: true);
+              final data = await ref.read(pdfAddProvider.notifier).import();
+              if (data != null && context.mounted) {
+                await context.pushNamed(
+                  Routes.pdfRead,
+                  pathParameters: {'id': data.id.toString()},
+                );
+                if (!context.mounted) return;
+                await ref.read(homeProvider.notifier).onRefresh();
+              }
             });
           },
           elevation: 0,

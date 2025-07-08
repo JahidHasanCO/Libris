@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:libris/core/provider/provider.dart';
 import 'package:libris/core/theme/colors.dart';
 import 'package:libris/core/utils/extension/ref.dart';
+import 'package:libris/modules/pdf_add/pdf_add.dart';
 import 'package:libris/router/router.dart';
 import 'package:libris/shared/enums/menu.dart';
 import 'package:libris/shared/widgets/pdf_list_tile.dart';
@@ -89,11 +90,19 @@ class PdfList extends ConsumerWidget {
                     pathParameters: {'id': pdf.id.toString()},
                   );
                 },
-                onMenuSelected: (index) {
+                onMenuSelected: (index) async {
+                  if (filterMenus[index] == Menu.edit) {
+                    await PdfAddBottomSheet.show(
+                      context,
+                      isUpdate: true,
+                      entry: pdf,
+                    );
+                    await ref.read(homeProvider.notifier).onRefresh();
+                  }
                   if (filterMenus[index] == Menu.delete) {
-                    ref.read(homeProvider.notifier).deletePdf(pdf.id);
+                    await ref.read(homeProvider.notifier).deletePdf(pdf.id);
                   } else if (filterMenus[index] == Menu.moveToPrivate) {
-                    ref.read(homeProvider.notifier).moveToPrivate(pdf.id);
+                    await ref.read(homeProvider.notifier).moveToPrivate(pdf.id);
                   }
                 },
               );
@@ -120,11 +129,19 @@ class PdfList extends ConsumerWidget {
                     pathParameters: {'id': pdf.id.toString()},
                   );
                 },
-                onMenuSelected: (index) {
+                onMenuSelected: (index) async {
+                  if (filterMenus[index] == Menu.edit) {
+                    await PdfAddBottomSheet.show(
+                      context,
+                      isUpdate: true,
+                      entry: pdf,
+                    );
+                    await ref.read(homeProvider.notifier).onRefresh();
+                  }
                   if (filterMenus[index] == Menu.delete) {
-                    ref.read(homeProvider.notifier).deletePdf(pdf.id);
+                    await ref.read(homeProvider.notifier).deletePdf(pdf.id);
                   } else if (filterMenus[index] == Menu.moveToPrivate) {
-                    ref.read(homeProvider.notifier).moveToPrivate(pdf.id);
+                    await ref.read(homeProvider.notifier).moveToPrivate(pdf.id);
                   }
                 },
               );
