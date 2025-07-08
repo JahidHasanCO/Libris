@@ -1,3 +1,6 @@
+
+![Libris](/assets/images/logo.png) 
+
 Welcome to **Libris**, your trusted companion for reading, organizing, and managing PDF files with ease.
 
 At **Libris**, our mission is to create a seamless and powerful reading experience for students, professionals, and lifelong learners. We believe that accessing your documents should be **simple, fast, and intuitive**, empowering you to focus on what truly matters.
