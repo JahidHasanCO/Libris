@@ -157,7 +157,7 @@ class ShelveListView extends ConsumerWidget {
                         menuItems: filterMenus,
                         onTap: () {
                           context.pushNamed(
-                            Routes.categoryDetails,
+                            Routes.shelveDetails,
                             pathParameters: {
                               'id': shelve.id.toString(),
                             },

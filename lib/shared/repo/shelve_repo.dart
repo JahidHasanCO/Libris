@@ -7,7 +7,6 @@ class ShelveRepo {
   static const _tableName = 'shelves';
   static const _pdfTableName = 'pdf_shelf';
 
-  /// Create new shelf
   Future<int> insertShelf(Shelf shelf) async {
     try {
       final database = await db.database;
@@ -18,7 +17,28 @@ class ShelveRepo {
     }
   }
 
-  /// Get all shelves
+  Future<Shelf?> getShelfById(int id) async {
+    try {
+      final database = await db.database;
+      final result = await database.query(
+        _tableName,
+        where: 'id = ?',
+        whereArgs: [id],
+        limit: 1,
+      );
+
+      if (result.isNotEmpty) {
+        return Shelf.fromMap(result.first);
+      } else {
+        return null;
+      }
+    } on Exception catch (e) {
+      e.doPrint(prefix: '[ShelveRepo.getShelfById]');
+      return null;
+    }
+  }
+
+
   Future<List<Shelf>> getAllShelves() async {
     try {
       final database = await db.database;
@@ -75,14 +95,19 @@ class ShelveRepo {
     }
   }
 
-  /// Get all PDF-Shelf relations
-  Future<List<PdfShelf>> getAllPdfShelves() async {
+  Future<List<PDF>> getAllPdfsInShelf(int shelfId) async {
     try {
       final database = await db.database;
-      final result = await database.query(_pdfTableName);
-      return result.map(PdfShelf.fromMap).toList();
+      final result = await database.rawQuery('''
+      SELECT p.*
+      FROM pdfs p
+      INNER JOIN pdf_shelf ps ON p.id = ps.pdf_id
+      WHERE ps.shelf_id = ?
+    ''', [shelfId]);
+
+      return result.map(PDF.fromMap).toList();
     } on Exception catch (e) {
-      e.doPrint(prefix: '[ShelveRepo.getAllPdfShelves]');
+      e.doPrint(prefix: '[ShelveRepo.getAllPdfsInShelf]');
       return [];
     }
   }

@@ -18,6 +18,7 @@ final class AppRouter {
           PrivateFolderPinPage.route,
           PrivateFolderPage.route,
           PdfThemePage.route,
+          ShelveDetailsPage.route,
         ],
         navigatorKey: navigatorKey,
         initialLocation: initialLocation,

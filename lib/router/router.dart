@@ -11,6 +11,7 @@ import 'package:libris/modules/pdf_read/pdf_read.dart';
 import 'package:libris/modules/pdf_theme/pdf_theme.dart';
 import 'package:libris/modules/private_folder/private_folder.dart';
 import 'package:libris/modules/private_folder_pin/private_folder_pin.dart';
+import 'package:libris/modules/shelve_details/shelve_details.dart';
 import 'package:navigation_history_observer/navigation_history_observer.dart'
     show NavigationHistoryObserver;
 
