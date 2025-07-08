@@ -1,4 +1,4 @@
-<img src="/assets/images/logo.png" width="100" height="100"/>
+![Libris App](/ART/cover.png)
 
 Welcome to **Libris**, your trusted companion for reading, organizing, and managing PDF files with ease.
 
