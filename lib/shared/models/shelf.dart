@@ -19,6 +19,20 @@ class Shelf {
   final String? createdAt;
   final String? updatedAt;
 
+  Shelf copyWith({
+    int? id,
+    String? name,
+    String? createdAt,
+    String? updatedAt,
+  }) {
+    return Shelf(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
+
   Map<String, dynamic> toMap() {
     return {
       'id': id,

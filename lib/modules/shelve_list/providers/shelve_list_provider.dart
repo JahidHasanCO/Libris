@@ -26,4 +26,21 @@ class ShelveListProvider extends Notifier<ShelveListState> {
     final data = await _repo.getAllShelves();
     state = state.copyWith(status: State.success, shelveList: data);
   }
+
+  Future<void> deleteShelve(int id) async {
+    state = state.copyWith(status: State.loading, message: '');
+    final result = await _repo.deleteShelf(id);
+    if (result > 0) {
+      state = state.copyWith(
+        status: State.success,
+        message: 'Shelve deleted successfully',
+      );
+      await onRefresh();
+    } else {
+      state = state.copyWith(
+        status: State.error,
+        message: 'Failed to delete shelve',
+      );
+    }
+  }
 }

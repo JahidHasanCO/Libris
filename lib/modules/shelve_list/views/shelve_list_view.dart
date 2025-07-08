@@ -7,10 +7,16 @@ import 'package:libris/core/provider/provider.dart';
 import 'package:libris/core/theme/colors.dart';
 import 'package:libris/modules/shelve_entry/shelve_entry.dart';
 import 'package:libris/router/router.dart';
+import 'package:libris/shared/enums/menu.dart';
 import 'package:libris/shared/widgets/widgets.dart';
 
 class ShelveListView extends ConsumerWidget {
   const ShelveListView({super.key});
+
+  static List<Menu> filterMenus = [
+    Menu.edit,
+    Menu.delete,
+  ];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -40,7 +46,7 @@ class ShelveListView extends ConsumerWidget {
           provider: shelveListProvider,
           selector: (s) => s.shelveList.isEmpty,
           builder: (context, isEmpty) {
-            return isEmpty ? _emptyOrLoadingBody(ref) : _body();
+            return isEmpty ? _emptyOrLoadingBody(ref) : _body(ref);
           },
         ),
         floatingActionButton: FloatingActionButton(
@@ -112,7 +118,7 @@ class ShelveListView extends ConsumerWidget {
     );
   }
 
-  Widget _body() {
+  Widget _body(WidgetRef ref) {
     return Stack(
       children: [
         Positioned.fill(
@@ -148,6 +154,7 @@ class ShelveListView extends ConsumerWidget {
                       final shelve = shelveList[index];
                       return ShelveCard(
                         title: shelve.name,
+                        menuItems: filterMenus,
                         onTap: () {
                           context.pushNamed(
                             Routes.categoryDetails,
@@ -155,6 +162,23 @@ class ShelveListView extends ConsumerWidget {
                               'id': shelve.id.toString(),
                             },
                           );
+                        },
+                        onMenuSelected: (index) async {
+                          if (filterMenus[index] == Menu.edit) {
+                            await ShelveEntryBottomSheet.show(
+                              context,
+                              isUpdate: true,
+                              entry: shelve,
+                            );
+                            WidgetsBinding.instance.addPostFrameCallback((_) {
+                              ref.read(shelveListProvider.notifier).onRefresh();
+                            });
+                          }
+                          if (filterMenus[index] == Menu.delete) {
+                            await ref
+                                .read(shelveListProvider.notifier)
+                                .deleteShelve(shelve.id ?? 0);
+                          }
                         },
                       );
                     },

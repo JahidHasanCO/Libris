@@ -28,4 +28,18 @@ class ShelveEntryProvider extends AutoDisposeNotifier<ShelveEntryState> {
       message: 'Shelf added successfully',
     );
   }
+
+  Future<void> update(String title, Shelf previous) async {
+    state = state.copyWith(status: State.loading, message: '');
+    final now = DateTime.now();
+    final shelf = previous.copyWith(
+      name: title,
+      updatedAt: now.toIso8601String(),
+    );
+    await _repo.updateShelf(shelf);
+    state = state.copyWith(
+      status: State.success,
+      message: 'Shelf update successfully',
+    );
+  }
 }

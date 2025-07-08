@@ -58,7 +58,7 @@ class ShelveEntryBottomSheetState
   @override
   void initState() {
     super.initState();
-    if(widget.isUpdate && widget.entry != null){
+    if (widget.isUpdate && widget.entry != null) {
       titleController.text = widget.entry!.name;
     }
   }
@@ -78,10 +78,10 @@ class ShelveEntryBottomSheetState
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Row(
             children: [
-              const Expanded(
+              Expanded(
                 child: Text(
-                  'Add Shelve',
-                  style: TextStyle(
+                  widget.isUpdate ? 'Update Shelve' : 'Add Shelve',
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: textColor,
@@ -124,7 +124,16 @@ class ShelveEntryBottomSheetState
             onPressed: () async {
               if (!_formKey.currentState!.validate()) return;
               final title = titleController.text.trim();
-              await ref.read(shelveEntryProvider.notifier).add(title);
+              if (widget.isUpdate && widget.entry != null) {
+                await ref
+                    .read(shelveEntryProvider.notifier)
+                    .update(
+                      title,
+                      widget.entry!,
+                    );
+              } else {
+                await ref.read(shelveEntryProvider.notifier).add(title);
+              }
               if (!context.mounted) return;
               Navigator.pop(context);
             },
