@@ -31,6 +31,11 @@ class ShelveDetailsProvider extends AutoDisposeNotifier<ShelveDetailsState> {
     await getPdfs();
   }
 
+  Future<void> onInsert() async {
+    state = state.copyWith(insertAblePdfList: []);
+    await _getInsertAblePdfList();
+  }
+
   Future<void> onRefresh() async {
     state = state.copyWith(status: State.loading);
     await getShelve();
@@ -54,6 +59,46 @@ class ShelveDetailsProvider extends AutoDisposeNotifier<ShelveDetailsState> {
     try {
       final data = await _repo.getAllPdfsInShelf(_shelveId ?? 0);
       state = state.copyWith(status: State.success, pdfList: data);
+    } on Exception catch (e) {
+      state = state.copyWith(
+        status: State.error,
+        message: e.toString(),
+      );
+    }
+  }
+
+  Future<void> _getInsertAblePdfList() async {
+    try {
+      final data = await _repo.getPdfsNotInShelf(_shelveId ?? 0);
+      state = state.copyWith(status: State.success, insertAblePdfList: data);
+    } on Exception catch (e) {
+      state = state.copyWith(
+        status: State.error,
+        message: e.toString(),
+      );
+    }
+  }
+
+  Future<void> addPdfListToShelf(List<int> pdfIds) async {
+    try {
+      final pdfs = <PdfShelf>[];
+      for (final id in pdfIds) {
+        pdfs.add(PdfShelf(pdfId: id, shelfId: _shelveId ?? 0));
+      }
+      await _repo.insertMultiplePdfShelves(pdfs);
+      await onRefresh();
+    } on Exception catch (e) {
+      state = state.copyWith(
+        status: State.error,
+        message: e.toString(),
+      );
+    }
+  }
+
+  Future<void> removePdfFromShelf(int pdfId) async {
+    try {
+      await _repo.removePdfShelf(pdfId);
+      await onRefresh();
     } on Exception catch (e) {
       state = state.copyWith(
         status: State.error,

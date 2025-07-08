@@ -18,6 +18,7 @@ class PdfList extends ConsumerWidget {
     Menu.edit,
     Menu.delete,
     Menu.moveToPrivate,
+    Menu.removeFromShelf,
   ];
 
   @override
@@ -99,6 +100,10 @@ class PdfList extends ConsumerWidget {
                     ref
                         .read(shelveDetailsProvider.notifier)
                         .moveToPrivate(pdf.id ?? 0);
+                  } else if (filterMenus[index] == Menu.removeFromShelf) {
+                    ref
+                        .read(shelveDetailsProvider.notifier)
+                        .removePdfFromShelf(pdf.id ?? 0);
                   }
                 },
               );
@@ -134,6 +139,10 @@ class PdfList extends ConsumerWidget {
                     ref
                         .read(shelveDetailsProvider.notifier)
                         .moveToPrivate(pdf.id ?? 0);
+                  } else if (filterMenus[index] == Menu.removeFromShelf) {
+                    ref
+                        .read(shelveDetailsProvider.notifier)
+                        .removePdfFromShelf(pdf.id ?? 0);
                   }
                 },
               );

@@ -70,6 +70,14 @@ class PdfReadViewState extends ConsumerState<ShelveDetailsView> {
                   return _body(ref);
                 },
               ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            await PdfAddBottomSheet.show(context);
+            await ref.read(shelveDetailsProvider.notifier).onRefresh();
+          },
+          backgroundColor: primaryColor,
+          child: const Icon(Icons.add, color: Colors.white, size: 30),
+        ),
       ),
     );
   }

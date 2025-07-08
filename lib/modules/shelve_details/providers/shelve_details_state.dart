@@ -8,12 +8,15 @@ class ShelveDetailsState extends Equatable {
     this.status = State.initial,
     this.message = '',
     this.pdfList = const [],
+    this.insertAblePdfList = const [],
     this.pdfViewType = 0,
   });
+
   final State status;
   final String message;
   final Shelf shelf;
   final List<PDF> pdfList;
+  final List<PDF> insertAblePdfList;
   final int pdfViewType;
 
   ShelveDetailsState copyWith({
@@ -21,6 +24,7 @@ class ShelveDetailsState extends Equatable {
     String? message,
     Shelf? shelf,
     List<PDF>? pdfList,
+    List<PDF>? insertAblePdfList,
     int? pdfViewType,
   }) {
     return ShelveDetailsState(
@@ -28,6 +32,7 @@ class ShelveDetailsState extends Equatable {
       message: message ?? this.message,
       pdfList: pdfList ?? this.pdfList,
       shelf: shelf ?? this.shelf,
+      insertAblePdfList: insertAblePdfList ?? this.insertAblePdfList,
       pdfViewType: pdfViewType ?? this.pdfViewType,
     );
   }
@@ -38,6 +43,7 @@ class ShelveDetailsState extends Equatable {
     message,
     shelf,
     pdfList,
+    insertAblePdfList,
     pdfViewType,
   ];
 }

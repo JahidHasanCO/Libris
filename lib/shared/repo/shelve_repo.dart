@@ -38,7 +38,6 @@ class ShelveRepo {
     }
   }
 
-
   Future<List<Shelf>> getAllShelves() async {
     try {
       final database = await db.database;
@@ -84,7 +83,6 @@ class ShelveRepo {
     }
   }
 
-  /// Create PDF-Shelf relationship
   Future<int> insertPdfShelf(PdfShelf pdfShelf) async {
     try {
       final database = await db.database;
@@ -95,15 +93,51 @@ class ShelveRepo {
     }
   }
 
+  Future<int> insertMultiplePdfShelves(List<PdfShelf> pdfShelves) async {
+    try {
+      final database = await db.database;
+      var insertedCount = 0;
+
+      await database.transaction((txn) async {
+        for (final pdfShelf in pdfShelves) {
+          final id = await txn.insert(_pdfTableName, pdfShelf.toMap());
+          if (id > 0) insertedCount++;
+        }
+      });
+
+      return insertedCount;
+    } on Exception catch (e) {
+      e.doPrint(prefix: '[ShelveRepo.insertMultiplePdfShelves]');
+      return 0;
+    }
+  }
+
+  Future<int> removePdfShelf(int id) async {
+    try {
+      final database = await db.database;
+      return await database.delete(
+        _pdfTableName,
+        where: 'id = ?',
+        whereArgs: [id],
+      );
+    } on Exception catch (e) {
+      e.doPrint(prefix: '[ShelveRepo.removePdfShelf]');
+      return 0;
+    }
+  }
+
   Future<List<PDF>> getAllPdfsInShelf(int shelfId) async {
     try {
       final database = await db.database;
-      final result = await database.rawQuery('''
+      final result = await database.rawQuery(
+        '''
       SELECT p.*
       FROM pdfs p
       INNER JOIN pdf_shelf ps ON p.id = ps.pdf_id
       WHERE ps.shelf_id = ?
-    ''', [shelfId]);
+    ''',
+        [shelfId],
+      );
 
       return result.map(PDF.fromMap).toList();
     } on Exception catch (e) {
@@ -115,12 +149,15 @@ class ShelveRepo {
   Future<List<PDF>> getPdfsNotInShelf(int shelfId) async {
     try {
       final database = await db.database;
-      final result = await database.rawQuery('''
+      final result = await database.rawQuery(
+        '''
         SELECT * FROM pdfs 
         WHERE id NOT IN (
           SELECT pdf_id FROM pdf_shelf WHERE shelf_id = ?
         ) AND is_protected = 0
-      ''', [shelfId]);
+      ''',
+        [shelfId],
+      );
 
       return result.map(PDF.fromMap).toList();
     } on Exception catch (e) {
