@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:material_symbols_icons/symbols.dart';
 import 'package:libris/core/theme/colors.dart';
 import 'package:libris/modules/menu/menu.dart';
 import 'package:libris/router/router.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 class MenuView extends StatelessWidget {
   const MenuView({super.key});

@@ -10,6 +10,8 @@ import 'package:libris/modules/pdf_read/pdf_read.dart';
 import 'package:libris/modules/pdf_theme/pdf_theme.dart';
 import 'package:libris/modules/private_folder/private_folder.dart';
 import 'package:libris/modules/private_folder_pin/private_folder_pin.dart';
+import 'package:libris/modules/shelve_entry/shelve_entry.dart';
+import 'package:libris/modules/shelve_list/shelve_list.dart';
 
 final appProvider = NotifierProvider<AppProvider, AppState>(AppProvider.new);
 
@@ -47,6 +49,16 @@ final privateFolderProvider =
 final pdfThemeProvider =
     AutoDisposeAsyncNotifierProvider<PdfThemeProvider, bool>(
       PdfThemeProvider.new,
+    );
+
+final shelveListProvider =
+    NotifierProvider<ShelveListProvider, ShelveListState>(
+      ShelveListProvider.new,
+    );
+
+final shelveEntryProvider =
+    AutoDisposeNotifierProvider<ShelveEntryProvider, ShelveEntryState>(
+      ShelveEntryProvider.new,
     );
 
 final privateFolderPinProvider =

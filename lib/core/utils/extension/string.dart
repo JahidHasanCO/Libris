@@ -5,7 +5,7 @@ extension StringExtension on String {
     try {
       final date = DateTime.parse(this);
       return DateFormat('dd/MM/yy').format(date);
-    } on Exception catch (e) {
+    } on Exception {
       return '';
     }
   }

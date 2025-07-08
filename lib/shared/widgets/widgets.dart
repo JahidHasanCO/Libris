@@ -7,3 +7,4 @@ export 'pdf_grid_tile.dart';
 export 'pop_up_menu_button.dart';
 export 'provider_selector.dart';
 export 'rounded_button.dart';
+export 'shelve_card.dart';

@@ -5,6 +5,7 @@ import 'package:libris/core/theme/colors.dart';
 import 'package:libris/modules/bottom_navigation/bottom_navigation.dart';
 import 'package:libris/modules/home/home.dart';
 import 'package:libris/modules/menu/menu.dart';
+import 'package:libris/modules/shelve_list/shelve_list.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 class BottomNavigationView extends ConsumerStatefulWidget {
@@ -20,6 +21,7 @@ class BottomNavigationViewState extends ConsumerState<BottomNavigationView> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await ref.read(homeProvider.notifier).onInit();
+      await ref.read(shelveListProvider.notifier).onInit();
     });
   }
 
@@ -73,7 +75,7 @@ class BottomNavigationViewState extends ConsumerState<BottomNavigationView> {
       index: ref.watch(bottomNavigationProvider),
       children: const [
         HomeView(),
-        MenuView(),
+        ShelveListView(),
         MenuView(),
       ],
     );

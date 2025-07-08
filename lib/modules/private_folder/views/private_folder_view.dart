@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:material_symbols_icons/symbols.dart';
 import 'package:libris/core/provider/provider.dart';
 import 'package:libris/core/theme/colors.dart';
 import 'package:libris/core/utils/extension/ref.dart';
@@ -10,6 +9,7 @@ import 'package:libris/modules/pdf_add/pdf_add.dart';
 import 'package:libris/modules/private_folder/widgets/pdf_list.dart';
 import 'package:libris/shared/models/models.dart';
 import 'package:libris/shared/widgets/widgets.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 class PrivateFolderView extends ConsumerStatefulWidget {
   const PrivateFolderView({super.key});
