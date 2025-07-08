@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:libris/core/provider/provider.dart';
+import 'package:libris/core/theme/colors.dart';
 import 'package:libris/core/utils/extension/ref.dart';
 import 'package:libris/modules/pdf_read/pdf_read.dart';
 import 'package:libris/shared/widgets/provider_selector.dart';
@@ -97,6 +98,7 @@ class AutoScrollControls extends ConsumerWidget {
                 builder: (context, speed) {
                   return Badge(
                     label: Text(formatDurationLabel(speed)),
+                    backgroundColor: primaryColor,
                     child: Icon(
                       Icons.speed,
                       size: 20,

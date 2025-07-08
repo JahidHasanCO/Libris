@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:libris/core/provider/provider.dart';
 import 'package:libris/core/provider/repo.dart';
 import 'package:libris/modules/shelve_details/shelve_details.dart';
 import 'package:libris/shared/enums/enums.dart';
@@ -115,6 +116,7 @@ class ShelveDetailsProvider extends AutoDisposeNotifier<ShelveDetailsState> {
   Future<void> moveToPrivate(int pdfId) async {
     await _pdfRepo.updateIsProtected(id: pdfId, isProtected: true);
     await onRefresh();
+    await ref.read(homeProvider.notifier).onRefresh();
   }
 
   Future<void> changePdfViewType(int viewType) async {

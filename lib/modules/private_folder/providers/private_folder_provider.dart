@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:libris/core/provider/provider.dart';
 import 'package:libris/core/provider/repo.dart';
 import 'package:libris/modules/private_folder/private_folder.dart';
 import 'package:libris/shared/enums/enums.dart';
@@ -51,6 +52,7 @@ class PrivateFolderProvider extends AutoDisposeNotifier<PrivateFolderState> {
   Future<void> moveToPublic(int pdfId) async {
     await _pdfRepo.updateIsProtected(id: pdfId, isProtected: false);
     await onRefresh();
+    await ref.read(homeProvider.notifier).onRefresh();
   }
 
 

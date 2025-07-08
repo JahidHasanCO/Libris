@@ -1,11 +1,13 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart' hide State;
 import 'package:flutter/services.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:libris/core/provider/provider.dart';
 import 'package:libris/core/provider/repo.dart';
+import 'package:libris/core/theme/colors.dart';
 import 'package:libris/core/utils/extension/object.dart';
 import 'package:libris/modules/pdf_read/pdf_read.dart';
 import 'package:libris/shared/enums/state.dart';
@@ -222,6 +224,14 @@ class PdfReadProvider extends AutoDisposeNotifier<PdfReadState> {
       ]);
     }
     await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: primaryDarkColor,
+        statusBarIconBrightness: Brightness.dark,
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarIconBrightness: Brightness.dark,
+      ),
+    );
     _timer?.cancel();
     _autoScrollTimer?.cancel();
     await _updateLastRead();

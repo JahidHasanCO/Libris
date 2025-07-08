@@ -134,7 +134,7 @@ class ShelveRepo {
       SELECT p.*
       FROM pdfs p
       INNER JOIN pdf_shelf ps ON p.id = ps.pdf_id
-      WHERE ps.shelf_id = ?
+      WHERE ps.shelf_id = ? AND p.is_protected = 0
     ''',
         [shelfId],
       );
